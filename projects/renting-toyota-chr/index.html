@@ -1,0 +1,4266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toyota C-HR híbrido: renting vs compra · estudio cuantitativo</title>
+<meta name="description" content="Estudio cuantitativo de las ofertas de renting del Toyota C-HR híbrido para particulares en España, con benchmark de compra al contado y financiada. 36, 48 y 60 meses; 15.000 km/año.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#06080c">
+<style>/* ============================================================
+   Toyota C-HR · renting vs compra
+   Tema oscuro, sin dependencias externas.
+   ============================================================ */
+
+:root {
+  --bg: #06080c;
+  --bg-2: #0a0e15;
+  --panel: #0d1219;
+  --panel-2: #111823;
+  --panel-3: #151d29;
+  --line: rgba(148, 163, 184, 0.14);
+  --line-2: rgba(148, 163, 184, 0.26);
+  --txt: #e9eef6;
+  --muted: #94a3b8;
+  --dim: #64748b;
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --emerald: #34d399;
+  --amber: #f59e0b;
+  --rose: #fb7185;
+  --radius: 16px;
+  --shadow: 0 18px 50px -24px rgba(0, 0, 0, 0.9);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--txt);
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+  background-size: 68px 68px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(ellipse 90% 60% at 50% 0%, #000 0%, transparent 72%);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.28);
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #24303f transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #24303f;
+  border-radius: 20px;
+  border: 2px solid var(--bg);
+}
+
+.wrap {
+  width: min(1240px, 100% - 48px);
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================ HERO ============================ */
+
+.hero {
+  position: relative;
+  padding: 76px 0 34px;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 620px;
+  background: radial-gradient(circle at 22% 18%, rgba(34, 211, 238, 0.16), transparent 55%),
+    radial-gradient(circle at 72% 6%, rgba(167, 139, 250, 0.16), transparent 52%),
+    radial-gradient(circle at 52% 60%, rgba(52, 211, 153, 0.08), transparent 60%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 6px 13px;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: rgba(13, 18, 25, 0.72);
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.eyebrow .pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald);
+  box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6);
+  animation: pulse 2.4s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 9px rgba(52, 211, 153, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+h1 {
+  margin: 0.28em 0 0.24em;
+  font-size: clamp(2.15rem, 5.4vw, 4.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 760;
+  max-width: 18ch;
+}
+
+h1 .grad {
+  background: linear-gradient(100deg, #67e8f9, #22d3ee 22%, #a78bfa 62%, #34d399);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lede {
+  max-width: 66ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.06rem;
+}
+
+.lede b {
+  color: var(--txt);
+  font-weight: 600;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.fact {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(17, 24, 35, 0.6);
+  color: var(--muted);
+  font-size: 0.79rem;
+  white-space: nowrap;
+}
+
+.fact b {
+  color: var(--txt);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================ KPIs ============================ */
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 40px;
+}
+
+.kpi {
+  position: relative;
+  padding: 18px 18px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(170deg, var(--panel-2), var(--panel) 62%);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.35s ease;
+}
+
+.kpi::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--accent, var(--cyan));
+  opacity: 0.85;
+}
+
+.kpi::before {
+  content: "";
+  position: absolute;
+  right: -50px;
+  top: -60px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--accent, var(--cyan));
+  opacity: 0.1;
+  filter: blur(32px);
+  transition: opacity 0.4s ease;
+}
+
+.kpi:hover {
+  transform: translateY(-3px);
+  border-color: var(--line-2);
+}
+
+.kpi:hover::before {
+  opacity: 0.2;
+}
+
+.kpi[data-accent="cyan"] {
+  --accent: var(--cyan);
+}
+.kpi[data-accent="violet"] {
+  --accent: var(--violet);
+}
+.kpi[data-accent="amber"] {
+  --accent: var(--amber);
+}
+.kpi[data-accent="emerald"] {
+  --accent: var(--emerald);
+}
+.kpi[data-accent="rose"] {
+  --accent: var(--rose);
+}
+
+.kpi-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 650;
+}
+
+.kpi-head .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, var(--cyan));
+}
+
+.kpi-value {
+  margin-top: 10px;
+  font-size: clamp(1.6rem, 2.6vw, 2.05rem);
+  font-weight: 720;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.kpi-value small {
+  font-size: 0.5em;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0;
+  margin-left: 3px;
+}
+
+.kpi-name {
+  margin-top: 6px;
+  font-size: 0.84rem;
+  color: var(--muted);
+  min-height: 2.6em;
+}
+
+.kpi-name b {
+  color: var(--txt);
+  font-weight: 600;
+}
+
+.kpi-foot {
+  margin-top: 8px;
+  padding-top: 9px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.74rem;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-foot .up {
+  color: var(--rose);
+}
+.kpi-foot .down {
+  color: var(--emerald);
+}
+
+/* ============================ TOOLBAR ============================ */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  margin-top: 26px;
+  padding: 12px 0;
+  background: linear-gradient(180deg, rgba(6, 8, 12, 0.94), rgba(6, 8, 12, 0.82));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.toolbar-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 18px;
+}
+
+.ctl {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.ctl-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--dim);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(13, 18, 25, 0.9);
+  gap: 2px;
+}
+
+.segmented button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 12px;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+  white-space: nowrap;
+}
+
+.segmented button:hover {
+  color: var(--txt);
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.segmented button.is-on {
+  color: #04121a;
+  background: linear-gradient(180deg, #67e8f9, #22d3ee);
+  box-shadow: 0 6px 18px -8px rgba(34, 211, 238, 0.9);
+}
+
+.range-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.range-mini output {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--txt);
+  min-width: 74px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch .track {
+  width: 38px;
+  height: 21px;
+  border-radius: 999px;
+  background: #1e2937;
+  border: 1px solid var(--line-2);
+  position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  flex: none;
+}
+
+.switch .track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #94a3b8;
+  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.25s ease;
+}
+
+.switch input:checked + .track {
+  background: rgba(34, 211, 238, 0.22);
+  border-color: rgba(34, 211, 238, 0.6);
+}
+
+.switch input:checked + .track::after {
+  transform: translateX(17px);
+  background: var(--cyan);
+}
+
+.switch input:focus-visible + .track {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background: linear-gradient(
+    90deg,
+    var(--cyan) 0%,
+    var(--cyan) var(--p, 50%),
+    #1e2937 var(--p, 50%),
+    #1e2937 100%
+  );
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #e9eef6;
+  border: 3px solid #0b1017;
+  box-shadow: 0 0 0 1px var(--cyan), 0 2px 8px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #e9eef6;
+  border: 3px solid #0b1017;
+  box-shadow: 0 0 0 1px var(--cyan);
+}
+
+/* ============================ SECTIONS ============================ */
+
+main {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 40px;
+}
+
+.section {
+  padding: 54px 0 8px;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.section-head .kicker {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-head .kicker::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.7;
+}
+
+.section-head h2 {
+  margin: 6px 0 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.section-head p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  max-width: 74ch;
+}
+
+.card {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(175deg, var(--panel-2), var(--panel) 55%);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.card-sub {
+  font-size: 0.78rem;
+  color: var(--dim);
+  margin-top: 2px;
+}
+
+/* ============================ RANKING ============================ */
+
+.rank-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rank-row {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  transition: background 0.22s ease, border-color 0.22s ease,
+    transform 0.22s ease;
+  animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rank-row:hover {
+  background: rgba(148, 163, 184, 0.06);
+  border-color: var(--line);
+}
+
+.rank-row.is-sel {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.1), rgba(34, 211, 238, 0.02));
+  border-color: rgba(34, 211, 238, 0.34);
+}
+
+.rank-row.is-bench {
+  opacity: 0.92;
+}
+
+.rank-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 9px;
+  border: 1px dashed var(--line-2);
+  font-size: 0.76rem;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+.rank-pos {
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--dim);
+  font-weight: 700;
+  text-align: center;
+}
+
+.rank-row.is-sel .rank-pos {
+  color: var(--cyan);
+}
+
+.rank-body {
+  min-width: 0;
+  display: block;
+}
+
+.rank-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.rank-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rank-name .ver {
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.rank-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.rank-val small {
+  font-size: 0.66rem;
+  font-weight: 500;
+  color: var(--dim);
+  margin-left: 3px;
+  letter-spacing: 0;
+}
+
+.bar {
+  display: flex;
+  height: 9px;
+  border-radius: 99px;
+  background: rgba(148, 163, 184, 0.09);
+  overflow: hidden;
+  margin: 7px 0 6px;
+}
+
+.bar-seg {
+  height: 100%;
+  width: 0;
+  transition: width 0.85s cubic-bezier(0.16, 0.8, 0.24, 1);
+  position: relative;
+}
+
+.bar-seg + .bar-seg {
+  box-shadow: -1px 0 0 rgba(6, 8, 12, 0.65);
+}
+
+.seg-entrada {
+  background: linear-gradient(180deg, #fbbf24, #f59e0b);
+}
+.seg-cuota {
+  background: linear-gradient(180deg, #67e8f9, #22d3ee);
+}
+.seg-extras {
+  background: linear-gradient(180deg, #c4b5fd, #a78bfa);
+}
+.seg-energia {
+  background: linear-gradient(180deg, #6ee7b7, #34d399);
+}
+.seg-bench {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(167, 139, 250, 0.85) 0 6px,
+    rgba(167, 139, 250, 0.35) 6px 12px
+  );
+}
+
+.rank-meta {
+  font-size: 0.72rem;
+  color: var(--dim);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  cursor: help;
+}
+
+.badge.real {
+  color: #6ee7b7;
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.28);
+}
+.badge.estimate {
+  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.badge.mixed {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.28);
+}
+.badge.benchmark {
+  color: #c4b5fd;
+  background: rgba(167, 139, 250, 0.12);
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+/* ============================ CHARTS ============================ */
+
+.chart {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart text {
+  fill: var(--dim);
+  font-size: 11px;
+  font-family: inherit;
+}
+
+.chart .axis-line {
+  stroke: rgba(148, 163, 184, 0.28);
+  stroke-width: 1;
+}
+
+.chart .grid-line {
+  stroke: rgba(148, 163, 184, 0.1);
+  stroke-width: 1;
+  stroke-dasharray: 2 5;
+}
+
+.chart .axis-title {
+  fill: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.chart .pt {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.chart .pt circle {
+  transition: r 0.25s ease, stroke-width 0.25s ease;
+}
+
+.chart .pt:hover circle {
+  r: 13;
+  stroke-width: 3;
+}
+
+.chart .pt:hover {
+  opacity: 1;
+}
+
+.chart .line {
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.5s cubic-bezier(0.3, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.chart .dot-end {
+  animation: fadeIn 0.6s ease 1.1s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.chart .lbl {
+  fill: var(--txt);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.chart .lbl-muted {
+  fill: var(--muted);
+  font-size: 10.5px;
+}
+
+.chart-note {
+  font-size: 0.75rem;
+  color: var(--dim);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Tooltip */
+.tip {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -115%) scale(0.96);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  background: rgba(9, 13, 19, 0.97);
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  padding: 9px 11px;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--muted);
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.9);
+  max-width: 260px;
+}
+
+.tip.on {
+  opacity: 1;
+  transform: translate(-50%, -115%) scale(1);
+}
+
+.tip b {
+  color: var(--txt);
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.8rem;
+}
+
+/* ============================ DONUT ============================ */
+
+.donut-wrap {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.donut svg {
+  width: 100%;
+  height: auto;
+}
+
+.donut circle {
+  transition: stroke-dasharray 0.9s cubic-bezier(0.16, 0.8, 0.24, 1);
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dl-row {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.82rem;
+}
+
+.dl-row:last-child {
+  border-bottom: 0;
+}
+
+.dl-row i {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.dl-row .dl-name {
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dl-row .dl-val {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.dl-row .dl-val small {
+  color: var(--dim);
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.dl-row.market {
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 10px 0;
+  align-items: start;
+}
+
+.dl-row.market .dl-name {
+  white-space: normal;
+}
+
+.donut-stats {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 14px;
+}
+
+.ds {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.ds span {
+  font-size: 0.66rem;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+
+.ds b {
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.ds.wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.ds.wide b {
+  color: var(--cyan);
+}
+
+/* ============================ HORIZON CARDS ============================ */
+
+.horizon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.hz {
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.hz:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+}
+
+.hz.is-current {
+  border-color: rgba(34, 211, 238, 0.4);
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.07), var(--panel));
+}
+
+.hz-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hz-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 700;
+}
+
+.hz-win {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+.hz-win.rent {
+  color: #6ee7b7;
+  background: rgba(52, 211, 153, 0.12);
+}
+.hz-win.buy {
+  color: #c4b5fd;
+  background: rgba(167, 139, 250, 0.14);
+}
+
+.hz-rows {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.hz-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+
+.hz-row span:first-child {
+  color: var(--muted);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hz-row b {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.hz-delta {
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--line);
+  font-size: 0.74rem;
+  color: var(--dim);
+}
+
+.hz-delta b {
+  color: var(--txt);
+}
+
+/* ============================ TABLE ============================ */
+
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 780px;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: #0c1118;
+  text-align: right;
+  padding: 11px 12px;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+thead th:first-child,
+thead th:nth-child(2),
+tbody td:first-child,
+tbody td:nth-child(2) {
+  text-align: left;
+}
+
+thead th button {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+thead th button:hover {
+  color: var(--txt);
+}
+
+thead th .arrow {
+  opacity: 0.35;
+  font-size: 0.85em;
+}
+
+thead th.is-sorted .arrow {
+  opacity: 1;
+  color: var(--cyan);
+}
+
+tbody td {
+  padding: 10px 12px;
+  text-align: right;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.07);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+tbody tr {
+  transition: background 0.18s ease;
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background: rgba(148, 163, 184, 0.05);
+}
+
+tbody tr.is-sel {
+  background: rgba(34, 211, 238, 0.07);
+}
+
+tbody tr.is-sel td {
+  color: var(--txt);
+}
+
+tbody td .t-name {
+  color: var(--txt);
+  font-weight: 600;
+}
+
+tbody td .t-ver {
+  color: var(--dim);
+  font-size: 0.72rem;
+}
+
+tbody td strong {
+  color: var(--txt);
+  font-weight: 650;
+}
+
+tbody tr.bench td {
+  background: rgba(167, 139, 250, 0.04);
+}
+
+/* ============================ ASSUMPTIONS ============================ */
+
+.assump {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.assump > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-weight: 650;
+  font-size: 0.92rem;
+  transition: background 0.2s ease;
+}
+
+.assump > summary::-webkit-details-marker {
+  display: none;
+}
+
+.assump > summary:hover {
+  background: rgba(148, 163, 184, 0.04);
+}
+
+.assump > summary .chev {
+  transition: transform 0.3s ease;
+  color: var(--dim);
+  font-size: 0.8rem;
+}
+
+.assump[open] > summary .chev {
+  transform: rotate(180deg);
+}
+
+.assump-body {
+  padding: 4px 20px 22px;
+  border-top: 1px solid var(--line);
+}
+
+.assump-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px 28px;
+  padding-top: 18px;
+}
+
+.assump-group h4 {
+  margin: 0 0 10px;
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.slider {
+  margin-bottom: 14px;
+}
+
+.slider-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 0.78rem;
+}
+
+.slider-top label {
+  color: var(--muted);
+}
+
+.slider-top output {
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  color: var(--txt);
+  white-space: nowrap;
+}
+
+.assump-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--line-2);
+  background: rgba(148, 163, 184, 0.06);
+  color: var(--txt);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(148, 163, 184, 0.12);
+  border-color: rgba(148, 163, 184, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #67e8f9, #22d3ee);
+  border-color: transparent;
+  color: #04121a;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.06);
+}
+
+/* ============================ CALLOUT ============================ */
+
+.callout {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 13px;
+  border: 1px solid rgba(34, 211, 238, 0.22);
+  background: linear-gradient(120deg, rgba(34, 211, 238, 0.08), rgba(167, 139, 250, 0.05));
+}
+
+.callout .ic {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(34, 211, 238, 0.14);
+  color: var(--cyan);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.callout h3 {
+  margin: 0 0 4px;
+  font-size: 0.92rem;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--muted);
+}
+
+.callout p + p {
+  margin-top: 7px;
+}
+
+/* ============================ SOURCES ============================ */
+
+.src-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.src {
+  padding: 15px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  transition: border-color 0.22s ease, transform 0.22s ease;
+}
+
+.src:hover {
+  border-color: var(--line-2);
+  transform: translateY(-2px);
+}
+
+.src-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  flex-wrap: wrap;
+}
+
+.src-type {
+  font-size: 0.6rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: rgba(148, 163, 184, 0.12);
+  color: var(--muted);
+}
+
+.src-type.oficial {
+  color: #6ee7b7;
+  background: rgba(52, 211, 153, 0.12);
+}
+.src-type.real {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.12);
+}
+.src-type.fin {
+  color: #c4b5fd;
+  background: rgba(167, 139, 250, 0.13);
+}
+.src-type.desc {
+  color: #fda4af;
+  background: rgba(251, 113, 133, 0.12);
+}
+
+.src-date {
+  font-size: 0.68rem;
+  color: var(--dim);
+  margin-left: auto;
+}
+
+.src h4 {
+  margin: 0 0 5px;
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.src p {
+  margin: 0;
+  font-size: 0.77rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.src a {
+  font-size: 0.72rem;
+  display: inline-block;
+  margin-top: 8px;
+  word-break: break-all;
+  color: var(--cyan);
+  opacity: 0.85;
+}
+
+/* ============================ MISC ============================ */
+
+.two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note {
+  padding: 13px 15px;
+  border-radius: 11px;
+  border: 1px solid var(--line);
+  background: rgba(148, 163, 184, 0.03);
+}
+
+.note h4 {
+  margin: 0 0 4px;
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.note p {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.verdict {
+  padding: 22px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(52, 211, 153, 0.26);
+  background: linear-gradient(120deg, rgba(52, 211, 153, 0.08), rgba(34, 211, 238, 0.04));
+}
+
+.verdict .v-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 700;
+}
+
+.verdict h3 {
+  margin: 6px 0 8px;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.verdict p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  max-width: 88ch;
+}
+
+.verdict p + p {
+  margin-top: 8px;
+}
+
+.verdict strong {
+  color: var(--txt);
+}
+
+footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 40px;
+  padding: 26px 0 40px;
+  border-top: 1px solid var(--line);
+  color: var(--dim);
+  font-size: 0.76rem;
+}
+
+.foot-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.foot-inner p {
+  margin: 0;
+  max-width: 70ch;
+}
+
+/* ============================ RESPONSIVE ============================ */
+
+@media (max-width: 1080px) {
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .rank-grid,
+  .two-col {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .horizon-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    width: min(1240px, 100% - 32px);
+  }
+  .hero {
+    padding-top: 52px;
+  }
+  .toolbar-inner {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .toolbar-inner::-webkit-scrollbar {
+    display: none;
+  }
+  .toolbar-inner > * {
+    flex: none;
+  }
+  .toolbar-inner #csv {
+    margin-left: 0;
+  }
+  .kpis {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .kpi-name {
+    min-height: 0;
+  }
+  .toolbar {
+    padding: 10px 0;
+  }
+  .toolbar-inner {
+    gap: 8px 12px;
+  }
+  .ctl-label {
+    display: none;
+  }
+  .horizon-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .donut-wrap {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .donut {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  .section {
+    padding-top: 40px;
+  }
+  .rank-row {
+    padding: 9px 8px;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 9px;
+  }
+  .rank-val {
+    font-size: 0.86rem;
+  }
+  .rank-meta {
+    font-size: 0.66rem;
+  }
+  .card {
+    padding: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  body::before,
+  .toolbar {
+    display: none;
+  }
+  body {
+    background: #fff;
+    color: #111;
+  }
+  .card,
+  .kpi {
+    box-shadow: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span>Estudio de mercado · España · <span id="meta-date">10/11/2026</span></span>
+    <h1>Toyota C-HR híbrido:<br><span class="grad">renting o compra</span>, con números</h1>
+    <p class="lede">
+      Doce ofertas para particulares comparadas en <b>coste total real</b>: entrada, cuota,
+      energía y todo lo que la cuota no cubre. Con y sin entrada, a 36, 48 y 60 meses,
+      y con la compra al contado y financiada como referencia.
+    </p>
+    <div class="facts" id="hero-facts"></div>
+
+    <div class="kpis">
+      <article class="kpi" data-accent="cyan">
+        <div class="kpi-head"><span class="dot"></span><span>Mejor renting</span></div>
+        <div class="kpi-value" id="kpi1-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi1-name">—</div>
+        <div class="kpi-foot" id="kpi1-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="violet">
+        <div class="kpi-head"><span class="dot"></span><span>Compra al contado</span></div>
+        <div class="kpi-value" id="kpi2-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi2-name">—</div>
+        <div class="kpi-foot" id="kpi2-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="amber">
+        <div class="kpi-head"><span class="dot"></span><span>Compra financiada</span></div>
+        <div class="kpi-value" id="kpi3-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi3-name">—</div>
+        <div class="kpi-foot" id="kpi3-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="emerald">
+        <div class="kpi-head"><span class="dot"></span><span>Diferencia</span></div>
+        <div class="kpi-value" id="kpi4-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi4-name">—</div>
+        <div class="kpi-foot" id="kpi4-foot">—</div>
+      </article>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar" id="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="ctl">
+      <span class="ctl-label">Plazo</span>
+      <div class="segmented" role="group" aria-label="Plazo del contrato">
+        <button type="button" data-horizon="36">36 m</button>
+        <button type="button" data-horizon="48">48 m</button>
+        <button type="button" data-horizon="60">60 m</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label">Entrada</span>
+      <div class="segmented" role="group" aria-label="Modo de entrada">
+        <button type="button" data-entry="published">Publicada</button>
+        <button type="button" data-entry="zero">Sin entrada</button>
+        <button type="button" data-entry="custom">Personalizada</button>
+      </div>
+    </div>
+    <div class="ctl range-mini" id="custom-wrap" style="display:none">
+      <input type="range" id="customEntry" min="0" max="15000" step="250" value="3000" aria-label="Entrada personalizada">
+      <output id="customEntry-out">3.000 €</output>
+    </div>
+    <div class="ctl range-mini">
+      <span class="ctl-label">Km/año</span>
+      <input type="range" id="km" min="10000" max="25000" step="1000" value="15000" style="width:104px" aria-label="Kilómetros al año">
+      <output id="km-out">15.000 km</output>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="estimates" checked>
+      <span class="track"></span>
+      <span id="estimates-label">Con estimaciones</span>
+    </label>
+    <button type="button" class="btn" id="csv" style="margin-left:auto">↓ CSV</button>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <!-- 01 · RANKING -->
+    <section class="section" id="ranking">
+      <div class="section-head">
+        <div>
+          <div class="kicker">01 · Ranking</div>
+          <h2>Qué cuesta cada oferta, mes a mes</h2>
+          <p>
+            Ordenado por coste total equivalente: la cuota, la entrada repartida y los costes que
+            la oferta no cubre, todo normalizado a €/mes con un descuento del 3&nbsp;% anual.
+          </p>
+        </div>
+        <div class="legend">
+          <span><i style="background:#f59e0b"></i>Entrada</span>
+          <span><i style="background:#22d3ee"></i>Cuota</span>
+          <span><i style="background:#a78bfa"></i>Extras no incluidos</span>
+          <span><i style="background:#34d399"></i>Energía</span>
+        </div>
+      </div>
+
+      <div class="rank-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Ofertas de renting</div>
+              <div class="card-sub">Pulsa una fila para ver su desglose y su flujo de caja</div>
+            </div>
+          </div>
+          <div class="rank-list" id="rank-list"></div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="card-title" id="donut-title">Desglose</div>
+                <div class="card-sub" id="donut-sub"></div>
+              </div>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="donut"></div>
+              <div class="donut-legend" id="donut-legend"></div>
+            </div>
+            <div class="donut-stats" id="donut-stats"></div>
+            <div class="chart-note">
+              La entrada se reparte en cuotas mensuales equivalentes para poder compararla con
+              quien no da entrada. No es la cuota que se paga cada mes.
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="ic">i</div>
+            <div>
+              <h3>Cómo se calcula el €/mes equivalente</h3>
+              <p>
+                Se construye el flujo de caja mes a mes (entrada en el mes 0, cuotas y costes del 1 al n),
+                se descuenta a la tasa anual elegida y se divide por el factor de anualidad. Así, una entrada
+                de 4.583 € no desaparece: se convierte en la cuota mensual que haría falta para financiarla.
+              </p>
+              <p>
+                Es una métrica de comparación, no una cuota contractual. La cuota real que se paga
+                cada mes aparece en la tabla y en el ranking.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · DISPERSIÓN Y FLUJO -->
+    <section class="section" id="comparacion">
+      <div class="section-head">
+        <div>
+          <div class="kicker">02 · Comparación</div>
+          <h2>La cuota no es el coste</h2>
+          <p>
+            Una cuota baja con una entrada alta puede parecer barata. El eje vertical añade
+            entrada, energía y lo que no está incluido; la línea morada marca lo que cuesta
+            comprar el coche.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Cuota nominal vs. coste equivalente</div>
+              <div class="card-sub">Cada burbuja es una oferta; el tamaño refleja la entrada</div>
+            </div>
+          </div>
+          <div id="scatter"></div>
+          <div class="chart-note">
+            Por encima de la referencia de compra, la oferta es más cara que comprar el coche.
+            Pasa el cursor por cada punto para ver el detalle.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Desembolso acumulado</div>
+              <div class="card-sub">Dinero que sale del bolsillo, mes a mes</div>
+            </div>
+            <div class="legend" id="flow-legend"></div>
+          </div>
+          <div id="flow"></div>
+          <div class="chart-note" id="flow-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · PLAZOS -->
+    <section class="section" id="plazos">
+      <div class="section-head">
+        <div>
+          <div class="kicker">03 · Plazos</div>
+          <h2>3, 4 o 5 años: cambia el ganador</h2>
+          <p>
+            El renting concentra el coste en la cuota; la compra inmoviliza capital pero deja
+            un coche con valor. El punto de cruce depende del plazo y del valor residual.
+          </p>
+        </div>
+      </div>
+
+      <div class="horizon-grid" id="horizon-grid"></div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Dónde se cruzan las curvas</div>
+            <div class="card-sub">Coste equivalente según el plazo del contrato o de la propiedad</div>
+          </div>
+        </div>
+        <div id="crossover"></div>
+        <div class="chart-note" id="crossover-note"></div>
+      </div>
+    </section>
+
+    <!-- 04 · TABLA -->
+    <section class="section" id="tabla">
+      <div class="section-head">
+        <div>
+          <div class="kicker">04 · Datos</div>
+          <h2>Todas las cifras, ordenables</h2>
+          <p>
+            Pulsa las cabeceras para ordenar. Las filas moradas son referencias de compra,
+            no ofertas de renting.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="table-wrap" style="border:0">
+          <table id="offer-table">
+            <thead>
+              <tr>
+                <th data-sort="name"><button type="button">Proveedor <span class="arrow">↕</span></button></th>
+                <th data-sort="version"><button type="button">Versión <span class="arrow">↕</span></button></th>
+                <th data-sort="months"><button type="button">Plazo <span class="arrow">↕</span></button></th>
+                <th data-sort="entrada"><button type="button">Entrada <span class="arrow">↕</span></button></th>
+                <th data-sort="cuota"><button type="button">Cuota <span class="arrow">↕</span></button></th>
+                <th data-sort="nominal"><button type="button">Total nominal <span class="arrow">↕</span></button></th>
+                <th data-sort="eq" class="is-sorted"><button type="button">€/mes eq. <span class="arrow">▲</span></button></th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="chart-note">
+        Total nominal = suma de entrada, cuotas y costes no cubiertos, sin descontar.
+        €/mes eq. = mismo coste repartido en cuotas iguales con un descuento anual del 3&nbsp;%.
+      </div>
+    </section>
+
+    <!-- 05 · SUPUESTOS -->
+    <section class="section" id="supuestos">
+      <div class="section-head">
+        <div>
+          <div class="kicker">05 · Supuestos</div>
+          <h2>Mueve las piezas</h2>
+          <p>
+            Todo el estudio es paramétrico. Cambia el precio de la energía, el seguro, el valor
+            residual o la tasa de descuento y el ranking se recalcula al instante.
+          </p>
+        </div>
+      </div>
+
+      <details class="assump" open>
+        <summary>
+          <span>Parámetros del modelo</span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="assump-body">
+          <div id="assumptions"></div>
+          <div class="assump-actions">
+            <button type="button" class="btn primary" id="reset">Restablecer valores</button>
+          </div>
+        </div>
+      </details>
+
+      <div class="callout" style="margin-top:16px">
+        <div class="ic">↺</div>
+        <div>
+          <h3>Los cambios son solo para esta sesión</h3>
+          <p>
+            El informe no guarda nada: al recargar vuelven los valores base. El botón
+            «Restablecer valores» devuelve todos los parámetros a su punto de partida sin recargar.
+            El CSV exporta la tabla con los supuestos que tengas activos en ese momento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · CONCLUSIÓN -->
+    <section class="section" id="conclusion">
+      <div class="section-head">
+        <div>
+          <div class="kicker">06 · Conclusión</div>
+          <h2>Qué haría con estos números</h2>
+        </div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+
+      <div class="note-list" style="margin-top:16px">
+        <div class="note">
+          <h4>El seguro y el mantenimiento no son gratis en ninguna opción</h4>
+          <p>
+            En el renting van dentro de la cuota; en la compra se pagan aparte. El modelo los suma
+            en ambos casos, de modo que la comparación no premia a la compra por olvidar costes.
+          </p>
+        </div>
+        <div class="note">
+          <h4>El 220PH solo compensa si se enchufa de verdad</h4>
+          <p>
+            Su cuota y su entrada son más altas. El ahorro de combustible depende de hacer la mayor
+            parte de los kilómetros en eléctrico; con el consumo mixto supuesto, la ventaja energética
+            no cubre la diferencia de precio.
+          </p>
+        </div>
+        <div class="note">
+          <h4>El valor residual es la variable más frágil</h4>
+          <p>
+            Se asume un 62&nbsp;% a 3 años, 54&nbsp;% a 4 y 46&nbsp;% a 5. Si el mercado de segunda mano
+            se debilita, la compra empeora; si se fortalece, mejora. Pruébalo en los supuestos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · FUENTES -->
+    <section class="section" id="fuentes">
+      <div class="section-head">
+        <div>
+          <div class="kicker">07 · Fuentes</div>
+          <h2>De dónde sale cada número</h2>
+          <p>
+            Precios consultados el 10/11/2026. Las ofertas oficiales de Toyota están vigentes hasta
+            el 30/11/2026 en Península y Baleares. Cada ficha indica qué se ha verificado y qué se ha estimado.
+          </p>
+        </div>
+      </div>
+
+      <div class="src-grid" id="sources"></div>
+
+      <div class="two-col" style="margin-top:16px">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Referencias de mercado</div>
+              <div class="card-sub">Contraste con agregadores, no usadas en el ranking</div>
+            </div>
+          </div>
+          <div id="market"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Qué se ha descartado y por qué</div>
+              <div class="card-sub">Transparencia sobre los límites del estudio</div>
+            </div>
+          </div>
+          <div class="note-list" id="discarded"></div>
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="card" style="margin-top:24px">
+        <p>Este informe necesita JavaScript para calcular y dibujar los gráficos. Los datos están
+        embebidos en el propio archivo, sin conexión a internet.</p>
+      </div>
+    </noscript>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>
+      <strong>Toyota C-HR híbrido · renting vs compra.</strong> Estudio independiente elaborado con
+      precios públicos de Toyota España, REVEL, Total Renting y Swipcar. No es una oferta comercial
+      ni asesoramiento financiero. <span id="meta-vigencia"></span>
+    </p>
+    <p>Datos a <span id="meta-date">10/11/2026</span> · Importes en EUR con IVA incluido · Cálculos propios.</p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>/* Datos del estudio. Precios consultados el 10/11/2026.
+   Todas las cuotas se normalizan a IVA incluido (21 %). */
+(function (global) {
+  "use strict";
+
+  const META = {
+    titulo: "Toyota C-HR híbrido: renting vs compra",
+    subtitulo:
+      "Estudio cuantitativo de las ofertas de renting para particulares en España, con benchmark de compra al contado y financiada.",
+    fecha: "10/11/2026",
+    vigencia: "Promociones Toyota válidas hasta el 30/11/2026 en Península y Baleares.",
+    moneda: "EUR",
+    iva: 0.21,
+    kmReferencia: 15000,
+    plazos: [36, 48, 60]
+  };
+
+  const DEFAULTS = {
+    horizon: 48,
+    entryMode: "published",
+    customEntry: 3000,
+    km: 15000,
+    includeEstimates: true,
+    fuel: 1.55,
+    electricity: 0.18,
+    discount: 3,
+    residual3: 62,
+    residual4: 54,
+    residual5: 46,
+    insurance: 650,
+    maintenance: 350,
+    tireKm: 0.0125,
+    itv: 40,
+    tax: 120,
+    franchiseProvision: 0,
+    entryRate: 7.75,
+    benchmarkVersion: "140H"
+  };
+
+  const VERSIONS = {
+    "140H": {
+      pvp: 31725,
+      consumo: 5.2,
+      electrico: 0,
+      etiqueta: "ECO",
+      potencia: 140,
+      color: "#22d3ee"
+    },
+    "200H": {
+      pvp: 33690,
+      consumo: 5.7,
+      electrico: 0,
+      etiqueta: "ECO",
+      potencia: 197,
+      color: "#a78bfa"
+    },
+    "220PH": {
+      pvp: 35725,
+      consumo: 2.6,
+      electrico: 9,
+      etiqueta: "0",
+      potencia: 223,
+      color: "#34d399"
+    }
+  };
+
+  /* Financiación Toyota Easy Plus (48 meses, TIN 7,75 %, IVA incl.).
+     Solo se usa como benchmark de compra financiada. */
+  const FINANCE = {
+    "140H": {
+      entrada: 10931.2,
+      meses: 48,
+      cuota: 160,
+      ultima: 17435.54,
+      total: 36046.74,
+      tin: 7.75,
+      tae: 8.99,
+      fuenteId: "toyota-easy-plus-140"
+    },
+    "200H": {
+      entrada: 11679.5,
+      meses: 48,
+      cuota: 180,
+      ultima: 11948.35,
+      total: 32267.85,
+      tin: 7.5,
+      tae: 8.73,
+      fuenteId: "toyota-easy-plus-200",
+      nota:
+        "La promoción publicada del 200H implica un total a plazos inferior al PVP; se excluye del benchmark principal para no mezclar incentivos no detallados."
+    },
+    "220PH": {
+      entrada: 12017.8,
+      meses: 48,
+      cuota: 200,
+      ultima: 18868.6,
+      total: 40486.4,
+      tin: 7.75,
+      tae: 9.01,
+      fuenteId: "toyota-easy-plus-220"
+    }
+  };
+
+  const OFFERS = [
+    {
+      id: "toyota-140-48-10",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "140H",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 10000,
+      entrada: 4583,
+      cuota: 350,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "real",
+      fuenteId: "toyota-140-renting",
+      color: "#e5002b",
+      notas:
+        "Cuota publicada a 10.000 km/año. A 15.000 km se estima +5 % (elasticidad observada en Total Renting: 413,96 → 434,42 para +5.000 km). Neumáticos no incluidos según el texto legal, aunque la landing muestre el icono. ITV no detallada: se provisiona 40 €/año desde el 4.º año."
+    },
+    {
+      id: "toyota-200-48-10",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "200H",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 10000,
+      entrada: 5769,
+      cuota: 370,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "real",
+      fuenteId: "toyota-200-renting",
+      color: "#e5002b",
+      notas:
+        "Cuota publicada a 10.000 km/año; a 15.000 km se estima +5 %. Misma dotación que el 140H: seguro TR sin franquicia, mantenimiento, asistencia e impuestos; neumáticos no incluidos según el texto legal."
+    },
+    {
+      id: "toyota-220-48-10",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "220PH",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 10000,
+      entrada: 7994,
+      cuota: 370,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "real",
+      fuenteId: "toyota-220-renting",
+      color: "#e5002b",
+      notas:
+        "Cuota publicada a 10.000 km/año; a 15.000 km se estima +5 %. Híbrido enchufable: el cálculo añade energía eléctrica además de gasolina. Neumáticos no incluidos según el texto legal."
+    },
+    {
+      id: "toyota-140-36-est",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "140H",
+      acabado: "Advance",
+      meses: 36,
+      kmBase: 15000,
+      entrada: 4583,
+      cuota: 382.2,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "estimado",
+      fuenteId: "toyota-140-renting",
+      color: "#e5002b",
+      notas:
+        "Estimación propia, no publicada: cuota de 48 meses a 15.000 km (367,50 €) × 1,04 por plazo. El factor 1,04 se deriva de Total Renting (48 meses 434,42 € → 60 meses 417,91 €, −3,8 % por 12 meses). Entrada publicada de 48 meses."
+    },
+    {
+      id: "toyota-200-36-est",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "200H",
+      acabado: "Advance",
+      meses: 36,
+      kmBase: 15000,
+      entrada: 5769,
+      cuota: 404.04,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "estimado",
+      fuenteId: "toyota-200-renting",
+      color: "#e5002b",
+      notas:
+        "Estimación propia: cuota de 48 meses a 15.000 km (388,50 €) × 1,04 por plazo. No es una oferta publicada; sirve para comparar el horizonte de 3 años."
+    },
+    {
+      id: "toyota-220-36-est",
+      proveedor: "Toyota Easy Renting",
+      proveedorCorto: "Toyota",
+      version: "220PH",
+      acabado: "Advance",
+      meses: 36,
+      kmBase: 15000,
+      entrada: 7994,
+      cuota: 404.04,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: false,
+        itv: false,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 0,
+      tipo: "estimado",
+      fuenteId: "toyota-220-renting",
+      color: "#e5002b",
+      notas:
+        "Estimación propia: cuota de 48 meses a 15.000 km (388,50 €) × 1,04 por plazo. No es una oferta publicada; sirve para comparar el horizonte de 3 años."
+    },
+    {
+      id: "revel-140-36-15",
+      proveedor: "REVEL",
+      proveedorCorto: "REVEL",
+      version: "140H",
+      acabado: "Advance",
+      meses: 36,
+      kmBase: 15000,
+      entrada: 0,
+      cuota: 440,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 300,
+      tipo: "real",
+      fuenteId: "revel-140",
+      color: "#22d3ee",
+      notas:
+        "Oferta real a 36 meses y 15.000 km/año, sin entrada. Incluye seguro a todo riesgo con franquicia de 300 €, mantenimiento, averías, neumáticos, impuestos, asistencia y coche de sustitución. Añade 1.000 km extra de regalo (no computados)."
+    },
+    {
+      id: "revel-220-36-15",
+      proveedor: "REVEL",
+      proveedorCorto: "REVEL",
+      version: "220PH",
+      acabado: "Advance",
+      meses: 36,
+      kmBase: 15000,
+      entrada: 0,
+      cuota: 502,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: true
+      },
+      franquicia: 300,
+      tipo: "real",
+      fuenteId: "revel-220",
+      color: "#22d3ee",
+      notas:
+        "Oferta real a 36 meses y 15.000 km/año, sin entrada. Incluye seguro a todo riesgo con franquicia de 300 €, mantenimiento, averías, neumáticos, impuestos, asistencia y coche de sustitución."
+    },
+    {
+      id: "total-140-48-15",
+      proveedor: "Total Renting",
+      proveedorCorto: "Total Renting",
+      version: "140H",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 15000,
+      entrada: 0,
+      cuota: 525.65,
+      cuotaSinIva: 434.42,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: false
+      },
+      franquicia: null,
+      tipo: "real",
+      fuenteId: "total-renting",
+      color: "#a78bfa",
+      notas:
+        "Precio publicado sin IVA: 434,42 €/mes. Normalizado a IVA incluido: 525,65 €/mes. Sin entrada, seguro TR, mantenimiento, cambio de neumáticos e impuestos. Franquicia del seguro no publicada. Coche de sustitución no detallado."
+    },
+    {
+      id: "total-140-60-15",
+      proveedor: "Total Renting",
+      proveedorCorto: "Total Renting",
+      version: "140H",
+      acabado: "Advance",
+      meses: 60,
+      kmBase: 15000,
+      entrada: 0,
+      cuota: 505.67,
+      cuotaSinIva: 417.91,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: false
+      },
+      franquicia: null,
+      tipo: "real",
+      fuenteId: "total-renting",
+      color: "#a78bfa",
+      notas:
+        "Precio publicado sin IVA: 417,91 €/mes. Normalizado a IVA incluido: 505,67 €/mes. Sin entrada, seguro TR, mantenimiento, cambio de neumáticos e impuestos. Franquicia del seguro no publicada."
+    },
+    {
+      id: "total-140-48-10",
+      proveedor: "Total Renting",
+      proveedorCorto: "Total Renting",
+      version: "140H",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 10000,
+      entrada: 0,
+      cuota: 500.89,
+      cuotaSinIva: 413.96,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: false
+      },
+      franquicia: null,
+      tipo: "real",
+      fuenteId: "total-renting",
+      color: "#a78bfa",
+      notas:
+        "Precio publicado sin IVA: 413,96 €/mes. Normalizado a IVA incluido: 500,89 €/mes. A 15.000 km se estima +5 %. Sin entrada, seguro TR, mantenimiento, neumáticos e impuestos."
+    },
+    {
+      id: "swipcar-220-48-10",
+      proveedor: "Swipcar",
+      proveedorCorto: "Swipcar",
+      version: "220PH",
+      acabado: "Advance",
+      meses: 48,
+      kmBase: 10000,
+      entrada: 0,
+      cuota: 564,
+      incluye: {
+        seguro: true,
+        mantenimiento: true,
+        neumaticos: true,
+        itv: true,
+        impuestos: true,
+        asistencia: true,
+        sustitucion: false
+      },
+      franquicia: 0,
+      tipo: "real",
+      fuenteId: "swipcar-220",
+      color: "#f59e0b",
+      notas:
+        "Oferta real a 48 meses y 10.000 km/año, sin entrada. Seguro a todo riesgo sin franquicia, mantenimiento, averías, impuestos y asistencia. A 15.000 km se estima +5 %. No detalla coche de sustitución ni ITV."
+    }
+  ];
+
+  const SOURCES = [
+    {
+      id: "toyota-140-renting",
+      nombre: "Toyota España · C-HR Hybrid 140 Advance · Easy Renting",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-hybrid-140h-advance-easy-renting",
+      fecha: "10/11/2026",
+      tipo: "Oferta oficial",
+      detalle:
+        "350 €/mes con IVA, 48 meses, 10.000 km/año, entrada 4.583 €. Seguro TR sin franquicia, mantenimiento integral, asistencia, impuestos y vehículo de sustitución. El texto legal indica: «Sustitución de neumáticos no incluida»."
+    },
+    {
+      id: "toyota-200-renting",
+      nombre: "Toyota España · C-HR Hybrid 200H Advance · Easy Renting",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-hybrid-200h-advance-easy-renting",
+      fecha: "10/11/2026",
+      tipo: "Oferta oficial",
+      detalle:
+        "370 €/mes con IVA, 48 meses, 10.000 km/año, entrada 5.769 €. Misma dotación legal que el 140H: seguro TR sin franquicia, mantenimiento, asistencia e impuestos; neumáticos no incluidos."
+    },
+    {
+      id: "toyota-220-renting",
+      nombre: "Toyota España · C-HR Plug-in Hybrid 220 Advance · Easy Renting",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-hybrid-220ph-advance-easy-renting",
+      fecha: "10/11/2026",
+      tipo: "Oferta oficial",
+      detalle:
+        "370 €/mes con IVA, 48 meses, 10.000 km/año, entrada 7.994 €. Seguro TR sin franquicia, mantenimiento, asistencia e impuestos; neumáticos no incluidos según el texto legal."
+    },
+    {
+      id: "toyota-easy-plus-140",
+      nombre: "Toyota España · C-HR Hybrid 140 Advance · Toyota Easy Plus",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-140h-advance-easy-plus",
+      fecha: "10/11/2026",
+      tipo: "Financiación",
+      detalle:
+        "PVP al contado 31.725 €. Entrada 10.931,20 €, 48 cuotas de 160 € y última cuota 17.435,54 €. TIN 7,75 %, TAE 8,99 %, precio total a plazos 36.046,74 €. Incluye 4 años de mantenimiento y garantía."
+    },
+    {
+      id: "toyota-easy-plus-200",
+      nombre: "Toyota España · C-HR Hybrid 200H Advance · Toyota Easy Plus",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-200h-advance-easy-plus",
+      fecha: "10/11/2026",
+      tipo: "Financiación",
+      detalle:
+        "PVP al contado 33.690 €. Entrada 11.679,50 €, 48 cuotas de 180 € y última cuota 11.948,35 €. TIN 7,50 %, TAE 8,73 %. Se cita como referencia, pero no se usa en el benchmark principal."
+    },
+    {
+      id: "toyota-easy-plus-220",
+      nombre: "Toyota España · C-HR Plug-in Hybrid 220 Advance · Toyota Easy Plus",
+      url: "https://www.toyota.es/promociones/toyota-c-hr-220ph-advance-easy-plus",
+      fecha: "10/11/2026",
+      tipo: "Financiación",
+      detalle:
+        "PVP al contado 35.725 €. Entrada 12.017,80 €, 48 cuotas de 200 € y última cuota 18.868,60 €. TIN 7,75 %, TAE 9,01 %, precio total a plazos 40.486,40 €."
+    },
+    {
+      id: "revel-140",
+      nombre: "REVEL · Toyota C-HR 140H Advance",
+      url: "https://driverevel.com/es/es/coches/toyota-c-hr-hibrido-automatico-60df283c14b0b659b58d22e9_c81460e5f5",
+      fecha: "10/11/2026",
+      tipo: "Oferta real",
+      detalle:
+        "440 €/mes IVA incl., 36 meses, 15.000 km/año, sin entrada. Seguro TR con franquicia de 300 €, mantenimiento, averías, neumáticos, impuestos, asistencia y coche de sustitución."
+    },
+    {
+      id: "revel-220",
+      nombre: "REVEL · Toyota C-HR 220PH Advance",
+      url: "https://driverevel.com/es/es/toyota/c-hr",
+      fecha: "10/11/2026",
+      tipo: "Oferta real",
+      detalle:
+        "502 €/mes IVA incl., 36 meses, 15.000 km/año, sin entrada. Misma dotación que el 140H, con seguro TR y franquicia de 300 €."
+    },
+    {
+      id: "total-renting",
+      nombre: "Total Renting · Toyota C-HR Advance Hybrid 140 e-CVT",
+      url: "https://totalrenting.com/toyota-c-hr-advance-hybrid-140-e-cvt-ma/",
+      fecha: "10/11/2026",
+      tipo: "Oferta real",
+      detalle:
+        "Precios sin IVA: 434,42 €/mes a 48 meses y 15.000 km; 417,91 €/mes a 60 meses y 15.000 km; 413,96 €/mes a 48 meses y 10.000 km. Sin entrada, seguro TR, mantenimiento, neumáticos e impuestos. Normalizados a IVA incluido en el estudio."
+    },
+    {
+      id: "swipcar-220",
+      nombre: "Swipcar · Toyota C-HR 220PH e-CVT Advance",
+      url: "https://swipcar.com/es/renting-toyota/c-hr/220ph-e-cvt-advance",
+      fecha: "10/11/2026",
+      tipo: "Oferta real",
+      detalle:
+        "564 €/mes IVA incl., 48 meses, 10.000 km/año, sin entrada. Seguro TR sin franquicia, mantenimiento, averías, impuestos y asistencia. A 15.000 km se estima +5 %."
+    },
+    {
+      id: "coches-net",
+      nombre: "coches.net · Renting Toyota C-HR",
+      url: "https://www.coches.net/renting/toyota/chr/",
+      fecha: "10/11/2026",
+      tipo: "Referencia de mercado",
+      detalle:
+        "Agregador: 140H Advance 36 meses/15.000 km desde 440 €/mes; 140H 48 meses/10.000 km desde 491 €/mes; 220PH 48 meses/10.000 km desde 482 €/mes; 220PH 48 meses/20.000 km desde 553 €/mes. No se usa en el ranking porque no detalla entrada ni franquicia."
+    },
+    {
+      id: "carwow",
+      nombre: "Carwow · Renting Toyota C-HR",
+      url: "https://www.carwow.es/toyota/c-hr/renting",
+      fecha: "10/11/2026",
+      tipo: "Referencia de mercado",
+      detalle:
+        "Renting para particulares desde 440 €/mes; la oferta coincide con la de REVEL (36 meses, 15.000 km). Carwow declara seguro TR, mantenimiento, neumáticos, averías, impuesto de circulación e ITV incluidos."
+    },
+    {
+      id: "kinto",
+      nombre: "Kinto One · Toyota C-HR 180H Advance (ocasión)",
+      url: "https://www.kinto-mobility.eu/es/es/kinto-one/renting/toyota-CHRnegro180starbaix-used/ca1024",
+      fecha: "10/11/2026",
+      tipo: "Descartada",
+      detalle:
+        "48 meses, 15.000 km, sin entrada, 354 €/mes sin IVA. Es un C-HR de ocasión (180H), no un vehículo nuevo, por lo que no es comparable con el resto del estudio."
+    }
+  ];
+
+  const MARKET = [
+    {
+      etiqueta: "Rango de mercado 140H · 48 meses · 10.000 km",
+      valor: "491 – 501 €/mes",
+      detalle: "coches.net (491 €/mes) y Total Renting normalizado (500,89 €/mes)."
+    },
+    {
+      etiqueta: "Rango de mercado 220PH · 48 meses · 10.000 km",
+      valor: "482 – 564 €/mes",
+      detalle: "coches.net (482 €/mes) y Swipcar (564 €/mes)."
+    },
+    {
+      etiqueta: "Rango de mercado 140H · 36 meses · 15.000 km",
+      valor: "440 €/mes",
+      detalle: "REVEL, replicado por Carwow y coches.net."
+    }
+  ];
+
+  const DISCARDED = [
+    {
+      nombre: "Toyota C-HR Style / GR Sport",
+      motivo:
+        "No se han encontrado ofertas públicas verificadas de renting para estos acabados a 15.000 km/año en la fecha del estudio. No se estiman para no inventar precios; el ranking se limita a Advance."
+    },
+    {
+      nombre: "Kinto One 180H Advance",
+      motivo:
+        "Vehículo de ocasión (180H), no nuevo. 354 €/mes sin IVA a 48 meses y 15.000 km; no comparable."
+    },
+    {
+      nombre: "Renting Partner 140H Active",
+      motivo:
+        "60 meses, 10.000 km, 510 €/mes + IVA, pero corresponde al modelo anterior y sin stock. Se descarta por no ser el C-HR actual."
+    },
+    {
+      nombre: "Toyota Easy Renting a 36 meses",
+      motivo:
+        "La promoción publicada solo detalla 48 meses y 10.000 km. Las variantes a 36 meses del estudio son estimaciones propias y están marcadas como tales."
+    }
+  ];
+
+  global.CHR_DATA = {
+    META,
+    DEFAULTS,
+    VERSIONS,
+    FINANCE,
+    OFFERS,
+    SOURCES,
+    MARKET,
+    DISCARDED
+  };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>/* Motor de cálculo: TCO, VPN, anualidades, entrada y benchmark de compra. */
+(function (global) {
+  "use strict";
+
+  const D = global.CHR_DATA;
+
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+  function annuityFactor(months, annualRatePct) {
+    const r = annualRatePct / 100 / 12;
+    if (!r) return months;
+    return (1 - Math.pow(1 + r, -months)) / r;
+  }
+
+  function npv(flows, annualRatePct) {
+    const r = annualRatePct / 100 / 12;
+    return flows.reduce((acc, f) => acc + f.amount / Math.pow(1 + r, f.t), 0);
+  }
+
+  function energyCostPer100(version, state) {
+    const v = D.VERSIONS[version];
+    return v.consumo * state.fuel + v.electrico * state.electricity;
+  }
+
+  function cuotaAtKm(offer, km) {
+    const factor = clamp(1 + 0.05 * (km - offer.kmBase) / 5000, 0.5, 2.5);
+    return offer.cuota * factor;
+  }
+
+  /* Devuelve la entrada y la cuota ajustadas al modo de entrada.
+     - published: tal como se publica.
+     - zero: la entrada se financia al tipo de entrada y se reparte en la cuota.
+     - custom: se aporta una entrada distinta; la diferencia se reparte al mismo tipo. */
+  function entryAdjusted(offer, state) {
+    if (state.entryMode === "zero") {
+      if (offer.entrada <= 0) {
+        return { entrada: 0, cuota: offer.cuota, entryComponent: 0 };
+      }
+      const af = annuityFactor(offer.meses, state.entryRate);
+      const extra = offer.entrada / af;
+      return { entrada: 0, cuota: offer.cuota + extra, entryComponent: extra };
+    }
+    if (state.entryMode === "custom") {
+      const af = annuityFactor(offer.meses, state.entryRate);
+      const delta = offer.entrada - state.customEntry;
+      const extra = delta / af;
+      return {
+        entrada: state.customEntry,
+        cuota: Math.max(0, offer.cuota + extra),
+        entryComponent: extra
+      };
+    }
+    return { entrada: offer.entrada, cuota: offer.cuota, entryComponent: 0 };
+  }
+
+  function offerBadge(offer, state) {
+    if (offer.tipo === "estimado") {
+      return {
+        label: "Estimado",
+        tone: "estimate",
+        title: "Incluye una estimación propia de cuota o de plazo; no es una oferta publicada."
+      };
+    }
+    if (state.entryMode !== "published") {
+      return {
+        label: "Entrada simulada",
+        tone: "mixed",
+        title:
+          "La cuota publicada se ha recalculado para el modo de entrada elegido. No es la oferta original del proveedor."
+      };
+    }
+    if (offer.kmBase !== state.km) {
+      return {
+        label: "Real " + Math.round(offer.kmBase / 1000) + "k · km est.",
+        tone: "mixed",
+        title:
+          "Precio real publicado a " +
+          offer.kmBase.toLocaleString("es-ES") +
+          " km/año. El kilometraje seleccionado se estima con +5 % por cada 5.000 km."
+      };
+    }
+    return {
+      label: "Real",
+      tone: "real",
+      title: "Precio publicado para el plazo y kilometraje seleccionados."
+    };
+  }
+
+  function offerMetrics(offer, state) {
+    const n = offer.meses;
+    const af = annuityFactor(n, state.discount);
+    const adj = entryAdjusted(offer, state);
+    const baseCuotaKm = cuotaAtKm(offer, state.km);
+    const cuotaFinal = baseCuotaKm + adj.entryComponent;
+
+    const energyYear = (state.km * energyCostPer100(offer.version, state)) / 100;
+    const tiresYear = offer.incluye.neumaticos ? 0 : state.km * state.tireKm;
+    const insuranceYear = offer.incluye.seguro ? 0 : state.insurance;
+    const maintenanceYear = offer.incluye.mantenimiento ? 0 : state.maintenance;
+    const taxYear = offer.incluye.impuestos ? 0 : state.tax;
+    const franchiseYear =
+      offer.franquicia && offer.franquicia > 0 ? state.franchiseProvision : 0;
+    const itvUnits = offer.incluye.itv ? 0 : Math.max(0, Math.ceil((n - 36) / 12));
+    const itvTotal = itvUnits * state.itv;
+
+    const extrasYear =
+      tiresYear + insuranceYear + maintenanceYear + taxYear + franchiseYear;
+
+    const flows = [{ t: 0, amount: adj.entrada }];
+    const extraFlows = [];
+    const energyFlows = [];
+    for (let m = 1; m <= n; m++) {
+      const itvMonth = !offer.incluye.itv && m > 36 ? state.itv / 12 : 0;
+      const extraMonth = extrasYear / 12 + itvMonth;
+      const energyMonth = energyYear / 12;
+      extraFlows.push({ t: m, amount: extraMonth });
+      energyFlows.push({ t: m, amount: energyMonth });
+      flows.push({ t: m, amount: cuotaFinal + extraMonth + energyMonth });
+    }
+
+    const pv = npv(flows, state.discount);
+    const pvExtras = npv(extraFlows, state.discount);
+    const pvEnergy = npv(energyFlows, state.discount);
+    const totalEq = pv / af;
+    const nominalTotal = flows.reduce((s, f) => s + f.amount, 0);
+    const nominalMonthly = nominalTotal / n;
+
+    const components = {
+      entrada: adj.entrada / af,
+      cuota: cuotaFinal,
+      extras: pvExtras / af,
+      energia: pvEnergy / af
+    };
+
+    return {
+      ...offer,
+      entradaAjustada: adj.entrada,
+      cuotaAjustada: cuotaFinal,
+      cuotaBaseKm: baseCuotaKm,
+      entryComponent: adj.entryComponent,
+      meses: n,
+      af,
+      pv,
+      totalEq,
+      nominalTotal,
+      nominalMonthly,
+      components,
+      energyYear,
+      tiresYear,
+      insuranceYear,
+      maintenanceYear,
+      taxYear,
+      franchiseYear,
+      itvTotal,
+      kmEstimado: offer.kmBase !== state.km,
+      badge: offerBadge(offer, state),
+      categoria: "renting"
+    };
+  }
+
+  function residualPct(months, state) {
+    let pct;
+    if (months <= 48) {
+      pct = state.residual3 + ((state.residual4 - state.residual3) * (months - 36)) / 12;
+    } else {
+      pct = state.residual4 + ((state.residual5 - state.residual4) * (months - 48)) / 12;
+    }
+    return clamp(pct, 0, 100);
+  }
+
+  function runningMonthly(version, state, month) {
+    const energy = (state.km * energyCostPer100(version, state)) / 100 / 12;
+    const insurance = state.insurance / 12;
+    const maintenance = state.maintenance / 12;
+    const tires = (state.km * state.tireKm) / 12;
+    const tax = state.tax / 12;
+    const itv = month > 36 ? state.itv / 12 : 0;
+    return {
+      total: energy + insurance + maintenance + tires + tax + itv,
+      energy,
+      insurance,
+      maintenance,
+      tires,
+      tax,
+      itv
+    };
+  }
+
+  function purchaseCashMetrics(version, state) {
+    const n = state.horizon;
+    const pvp = D.VERSIONS[version].pvp;
+    const af = annuityFactor(n, state.discount);
+    const residual = (pvp * residualPct(n, state)) / 100;
+
+    const flows = [{ t: 0, amount: pvp }];
+    const runningFlows = [];
+    for (let m = 1; m <= n; m++) {
+      const r = runningMonthly(version, state, m);
+      runningFlows.push({ t: m, amount: r.total });
+      flows.push({ t: m, amount: r.total });
+    }
+    flows.push({ t: n, amount: -residual });
+
+    const pv = npv(flows, state.discount);
+    const pvRunning = npv(runningFlows, state.discount);
+    const pvResidual = residual / Math.pow(1 + state.discount / 100 / 12, n);
+    const totalEq = pv / af;
+    const nominalTotal = pvp + runningFlows.reduce((s, f) => s + f.amount, 0) - residual;
+
+    return {
+      id: "buy-cash-" + version,
+      categoria: "compra",
+      modo: "contado",
+      version,
+      meses: n,
+      pvp,
+      residual,
+      residualPct: residualPct(n, state),
+      af,
+      pv,
+      totalEq,
+      nominalTotal,
+      nominalMonthly: nominalTotal / n,
+      components: {
+        capital: pvp / af,
+        uso: pvRunning / af,
+        residual: -pvResidual / af
+      },
+      badge: { label: "Benchmark", tone: "benchmark", title: "Compra al contado con valor residual estimado." }
+    };
+  }
+
+  function purchaseFinanceMetrics(version, state) {
+    const f = D.FINANCE[version];
+    if (!f) return null;
+    const n = f.meses;
+    const pvp = D.VERSIONS[version].pvp;
+    const af = annuityFactor(n, state.discount);
+    const residual = (pvp * residualPct(n, state)) / 100;
+
+    const flows = [{ t: 0, amount: f.entrada }];
+    const runningFlows = [];
+    for (let m = 1; m <= n; m++) {
+      const r = runningMonthly(version, state, m);
+      runningFlows.push({ t: m, amount: r.total });
+      flows.push({ t: m, amount: f.cuota + r.total });
+    }
+    flows.push({ t: n, amount: f.ultima - residual });
+
+    const pv = npv(flows, state.discount);
+    const pvRunning = npv(runningFlows, state.discount);
+    const pvUltima = f.ultima / Math.pow(1 + state.discount / 100 / 12, n);
+    const pvResidual = residual / Math.pow(1 + state.discount / 100 / 12, n);
+    const totalEq = pv / af;
+    const nominalTotal =
+      f.entrada + n * f.cuota + f.ultima + runningFlows.reduce((s, f2) => s + f2.amount, 0) - residual;
+
+    return {
+      id: "buy-finance-" + version,
+      categoria: "compra",
+      modo: "financiada",
+      version,
+      meses: n,
+      pvp,
+      residual,
+      residualPct: residualPct(n, state),
+      af,
+      pv,
+      totalEq,
+      nominalTotal,
+      nominalMonthly: nominalTotal / n,
+      finance: f,
+      components: {
+        entrada: f.entrada / af,
+        cuotas: f.cuota,
+        ultima: pvUltima / af,
+        uso: pvRunning / af,
+        residual: -pvResidual / af
+      },
+      badge: {
+        label: "Benchmark 48m",
+        tone: "benchmark",
+        title: "Compra financiada Toyota Easy Plus a 48 meses, con valor residual estimado."
+      }
+    };
+  }
+
+  function offerList(state) {
+    return D.OFFERS.filter(
+      (o) => o.meses === state.horizon && (state.includeEstimates || o.tipo === "real")
+    ).map((o) => offerMetrics(o, state));
+  }
+
+  function bestOffer(offers, state, version) {
+    const filtered = offers.filter((o) => !version || o.version === version);
+    if (!filtered.length) return null;
+    return filtered.slice().sort((a, b) => a.totalEq - b.totalEq)[0];
+  }
+
+  function bestOfferForHorizon(state, version, horizon) {
+    const s = { ...state, horizon };
+    const list = D.OFFERS.filter(
+      (o) => o.meses === horizon && (s.includeEstimates || o.tipo === "real")
+    )
+      .map((o) => offerMetrics(o, s))
+      .filter((o) => !version || o.version === version);
+    if (!list.length) return null;
+    return list.sort((a, b) => a.totalEq - b.totalEq)[0];
+  }
+
+  function purchaseForHorizon(state, version, horizon, mode) {
+    const s = { ...state, horizon };
+    return mode === "finance"
+      ? purchaseFinanceMetrics(version, s)
+      : purchaseCashMetrics(version, s);
+  }
+
+  function fmtEuro(value, decimals) {
+    const d = decimals === undefined ? 0 : decimals;
+    return new Intl.NumberFormat("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: d,
+      maximumFractionDigits: d,
+      useGrouping: "always"
+    }).format(value);
+  }
+
+  function fmtNum(value, decimals) {
+    const d = decimals === undefined ? 0 : decimals;
+    return new Intl.NumberFormat("es-ES", {
+      minimumFractionDigits: d,
+      maximumFractionDigits: d,
+      useGrouping: "always"
+    }).format(value);
+  }
+
+  function fmtPct(value, decimals) {
+    return fmtNum(value, decimals === undefined ? 1 : decimals) + " %";
+  }
+
+  global.CHR_ENGINE = {
+    clamp,
+    annuityFactor,
+    npv,
+    energyCostPer100,
+    cuotaAtKm,
+    entryAdjusted,
+    offerBadge,
+    offerMetrics,
+    residualPct,
+    runningMonthly,
+    purchaseCashMetrics,
+    purchaseFinanceMetrics,
+    offerList,
+    bestOffer,
+    bestOfferForHorizon,
+    purchaseForHorizon,
+    fmtEuro,
+    fmtNum,
+    fmtPct
+  };
+})(typeof window !== "undefined" ? window : globalThis);
+</script>
+<script>/* UI, estado, gráficos SVG e interacciones. */
+(function () {
+  "use strict";
+
+  var D = window.CHR_DATA;
+  var E = window.CHR_ENGINE;
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  };
+  var fmtE = E.fmtEuro;
+  var fmtN = E.fmtNum;
+
+  var state = Object.assign({}, D.DEFAULTS);
+  var selectedId = null;
+  var sort = { key: "eq", dir: 1 };
+  var renderTimer = null;
+
+  function scheduleRender() {
+    if (renderTimer) clearTimeout(renderTimer);
+    renderTimer = setTimeout(function () {
+      renderTimer = null;
+      render();
+    }, 90);
+  }
+
+  var COMP_COLORS = {
+    entrada: "#f59e0b",
+    cuota: "#22d3ee",
+    extras: "#a78bfa",
+    energia: "#34d399"
+  };
+  var COMP_LABELS = {
+    entrada: "Entrada",
+    cuota: "Cuota",
+    extras: "Extras no incluidos",
+    energia: "Energía"
+  };
+
+  function versionColor(v) {
+    return (D.VERSIONS[v] && D.VERSIONS[v].color) || "#22d3ee";
+  }
+
+  /* ------------------------------------------------------------
+     Datos derivados
+     ------------------------------------------------------------ */
+
+  function offers() {
+    return E.offerList(state).sort(function (a, b) { return a.totalEq - b.totalEq; });
+  }
+  function cashM() {
+    return E.purchaseCashMetrics(state.benchmarkVersion, state);
+  }
+  function finM() {
+    return state.horizon === 48
+      ? E.purchaseFinanceMetrics(state.benchmarkVersion, state)
+      : null;
+  }
+  function selectedOffer(list) {
+    var l = list || offers();
+    for (var i = 0; i < l.length; i++) if (l[i].id === selectedId) return l[i];
+    return l[0] || null;
+  }
+  function bestAt(h) {
+    var s = Object.assign({}, state, { horizon: h });
+    var l = E.offerList(s).sort(function (a, b) { return a.totalEq - b.totalEq; });
+    return l[0] || null;
+  }
+
+  /* ------------------------------------------------------------
+     Animación de cifras
+     ------------------------------------------------------------ */
+
+  function setMoney(node, value, dec, prefix) {
+    if (!node) return;
+    dec = dec === undefined ? 0 : dec;
+    prefix = prefix || "";
+    var from = Number(node.getAttribute("data-v") || 0);
+    node.setAttribute("data-v", String(value));
+    if (Math.abs(from - value) < 0.005) {
+      node.textContent = prefix + fmtE(Math.abs(value), dec);
+      return;
+    }
+    var t0 = performance.now();
+    var dur = 620;
+    function step(t) {
+      var k = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - k, 3);
+      node.textContent = prefix + fmtE(Math.abs(from + (value - from) * e), dec);
+      if (k < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function kpiValue(sel, value, unit, prefix) {
+    var box = $(sel);
+    if (!box) return;
+    var v = box.querySelector(".v");
+    var small = box.querySelector("small");
+    if (value == null) {
+      v.textContent = "—";
+      v.removeAttribute("data-v");
+      if (small) small.textContent = "";
+      return;
+    }
+    setMoney(v, value, 0, prefix);
+    if (small) small.textContent = unit || "";
+  }
+
+  /* ------------------------------------------------------------
+     KPIs
+     ------------------------------------------------------------ */
+
+  function renderKpis(list) {
+    var best = list[0] || null;
+    var cash = cashM();
+    var fin = finM();
+
+    if (best) {
+      kpiValue("#kpi1-value", best.totalEq, "/mes equivalente");
+      $("#kpi1-name").innerHTML =
+        "<b>" + esc(best.proveedor) + "</b> · " + esc(best.version) + " " + esc(best.acabado);
+      $("#kpi1-foot").textContent =
+        best.meses + " meses · entrada " + fmtE(best.entradaAjustada) +
+        " · cuota " + fmtE(best.cuotaAjustada, 0);
+      var k1 = $("#kpi1-value").closest(".kpi");
+      if (k1) k1.setAttribute("data-accent", "cyan");
+    }
+
+    kpiValue("#kpi2-value", cash.totalEq, "/mes equivalente");
+    $("#kpi2-name").innerHTML =
+      "<b>Compra al contado</b> · " + esc(cash.version) + " Advance";
+    $("#kpi2-foot").textContent =
+      "PVP " + fmtE(cash.pvp) + " · residual " + fmtN(cash.residualPct, 0) + " %";
+
+    if (fin) {
+      kpiValue("#kpi3-value", fin.totalEq, "/mes equivalente");
+      $("#kpi3-name").innerHTML =
+        "<b>Toyota Easy Plus</b> · " + esc(fin.version) + " Advance";
+      $("#kpi3-foot").textContent =
+        "Entrada " + fmtE(fin.finance.entrada) + " · TAE " + fmtN(fin.finance.tae, 2) + " %";
+      var k3 = $("#kpi3-value").closest(".kpi");
+      if (k3) k3.setAttribute("data-accent", "amber");
+    } else {
+      kpiValue("#kpi3-value", null);
+      $("#kpi3-name").innerHTML = "<b>Compra financiada</b> · solo a 48 meses";
+      $("#kpi3-foot").textContent =
+        "La promoción Easy Plus se publica únicamente a 48 meses.";
+    }
+
+    var diff = cash.totalEq - (best ? best.totalEq : 0);
+    var k4 = $("#kpi4-value").closest(".kpi");
+    if (best && Math.abs(diff) >= 0.5) {
+      var rentingWins = diff > 0;
+      kpiValue("#kpi4-value", Math.abs(diff), "/mes", rentingWins ? "−" : "+");
+      $("#kpi4-name").innerHTML = rentingWins
+        ? "<b>Gana el renting</b> frente a la compra al contado"
+        : "<b>Gana la compra</b> frente al mejor renting";
+      $("#kpi4-foot").innerHTML = rentingWins
+        ? '<span class="down">Ahorro de ' + fmtE(Math.abs(diff) * best.meses) +
+          " en el periodo</span>"
+        : '<span class="up">Sobrecoste de ' + fmtE(Math.abs(diff) * best.meses) +
+          " en el periodo</span>";
+      if (k4) k4.setAttribute("data-accent", rentingWins ? "emerald" : "violet");
+    } else {
+      var v4 = $("#kpi4-value .v");
+      if (v4) { v4.textContent = "≈"; v4.removeAttribute("data-v"); }
+      var s4 = $("#kpi4-value small");
+      if (s4) s4.textContent = "";
+      $("#kpi4-name").textContent = "Empate técnico";
+      $("#kpi4-foot").textContent = "Diferencia inferior a 1 €/mes.";
+    }
+  }
+
+  /* ------------------------------------------------------------
+     Ranking
+     ------------------------------------------------------------ */
+
+  function barSegs(o, max) {
+    var order = ["entrada", "cuota", "extras", "energia"];
+    return order
+      .map(function (k) {
+        var w = (o.components[k] / max) * 100;
+        return (
+          '<span class="bar-seg seg-' + k + '" data-w="' + w.toFixed(2) +
+          '" style="width:0"></span>'
+        );
+      })
+      .join("");
+  }
+
+  function renderRanking(list) {
+    var cash = cashM();
+    var fin = finM();
+    var max = Math.max.apply(
+      null,
+      list.map(function (o) { return o.totalEq; }).concat([cash.totalEq, fin ? fin.totalEq : 0])
+    );
+
+    var html = "";
+    list.forEach(function (o, i) {
+      var sel = o.id === selectedId;
+      html +=
+        '<button class="rank-row' + (sel ? " is-sel" : "") + '" data-id="' + o.id +
+        '" style="--d:' + i * 45 + 'ms" aria-pressed="' + sel + '">' +
+        '<span class="rank-pos">' + (i + 1) + "</span>" +
+        '<span class="rank-body">' +
+        '<span class="rank-line">' +
+        '<span class="rank-name">' + esc(o.proveedor) +
+        ' <span class="ver">· ' + esc(o.version) + "</span></span>" +
+        '<span class="rank-val">' + fmtE(o.totalEq) + "<small>/mes eq.</small></span>" +
+        "</span>" +
+        '<span class="bar">' + barSegs(o, max) + "</span>" +
+        '<span class="rank-line rank-meta">' +
+        "<span>" + o.meses + " m · " + fmtN(state.km) + " km/año · entrada " +
+        fmtE(o.entradaAjustada) + " · cuota " + fmtE(o.cuotaAjustada, 0) + "</span>" +
+        '<span class="badge ' + o.badge.tone + '" title="' + esc(o.badge.title) + '">' +
+        esc(o.badge.label) + "</span>" +
+        "</span></span></button>";
+    });
+
+    html +=
+      '<div class="rank-row is-bench" style="--d:' + list.length * 45 + 'ms">' +
+      '<span class="rank-pos">·</span>' +
+      '<span class="rank-body">' +
+      '<span class="rank-line">' +
+      '<span class="rank-name">Compra al contado <span class="ver">· ' +
+      esc(cash.version) + "</span></span>" +
+      '<span class="rank-val">' + fmtE(cash.totalEq) + "<small>/mes eq.</small></span>" +
+      "</span>" +
+      '<span class="bar"><span class="bar-seg seg-bench" data-w="' +
+      ((cash.totalEq / max) * 100).toFixed(2) + '" style="width:0"></span></span>' +
+      '<span class="rank-line rank-meta"><span>PVP ' + fmtE(cash.pvp) +
+      " · residual " + fmtN(cash.residualPct, 0) + " % · " + cash.meses + " meses</span>" +
+      '<span class="badge benchmark">Benchmark</span></span>' +
+      "</span></div>";
+
+    if (fin) {
+      html +=
+        '<div class="rank-row is-bench" style="--d:' + (list.length + 1) * 45 + 'ms">' +
+        '<span class="rank-pos">·</span>' +
+        '<span class="rank-body">' +
+        '<span class="rank-line">' +
+        '<span class="rank-name">Compra financiada <span class="ver">· Easy Plus ' +
+        esc(fin.version) + "</span></span>" +
+        '<span class="rank-val">' + fmtE(fin.totalEq) + "<small>/mes eq.</small></span>" +
+        "</span>" +
+        '<span class="bar"><span class="bar-seg seg-bench" data-w="' +
+        ((fin.totalEq / max) * 100).toFixed(2) + '" style="width:0"></span></span>' +
+        '<span class="rank-line rank-meta"><span>Entrada ' + fmtE(fin.finance.entrada) +
+        " · TAE " + fmtN(fin.finance.tae, 2) + " % · última cuota " +
+        fmtE(fin.finance.ultima) + "</span>" +
+        '<span class="badge benchmark">Benchmark</span></span>' +
+        "</span></div>";
+    }
+
+    if (list.length <= 1) {
+      html += '<div class="rank-note">A este plazo solo hay ' +
+        (list.length ? "una oferta publicada" : "ninguna oferta") +
+        " con los filtros actuales. El resto de proveedores no publica este plazo para el C-HR.</div>";
+    }
+
+    $("#rank-list").innerHTML = html;
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        $$("#rank-list .bar-seg").forEach(function (s) {
+          s.style.width = s.getAttribute("data-w") + "%";
+        });
+      });
+    });
+
+    $$("#rank-list .rank-row[data-id]").forEach(function (row) {
+      row.addEventListener("click", function () {
+        selectOffer(row.getAttribute("data-id"));
+      });
+    });
+  }
+
+  function selectOffer(id) {
+    selectedId = id;
+    $$("#rank-list .rank-row").forEach(function (r) {
+      var on = r.getAttribute("data-id") === id;
+      r.classList.toggle("is-sel", on);
+      r.setAttribute("aria-pressed", String(on));
+    });
+    $$("#table-body tr").forEach(function (r) {
+      r.classList.toggle("is-sel", r.getAttribute("data-id") === id);
+    });
+    var list = offers();
+    renderFlow(list);
+    renderDonut(list);
+  }
+
+  /* ------------------------------------------------------------
+     Scatter: cuota nominal vs coste equivalente
+     ------------------------------------------------------------ */
+
+  function niceTicks(min, max, count) {
+    var span = max - min || 1;
+    var raw = span / count;
+    var mag = Math.pow(10, Math.floor(Math.log10(raw)));
+    var norm = raw / mag;
+    var step = (norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10) * mag;
+    var start = Math.floor(min / step) * step;
+    var out = [];
+    for (var v = start; v <= max + step * 0.5; v += step) {
+      if (v >= min - step * 0.5) out.push(Math.round(v * 100) / 100);
+    }
+    return out;
+  }
+
+  function renderScatter(list) {
+    var W = 760, H = 380, P = { l: 62, r: 20, t: 20, b: 48 };
+    if (!list.length) { $("#scatter").innerHTML = ""; return; }
+    var cash = cashM();
+    var xs = list.map(function (o) { return o.cuotaAjustada; });
+    var ys = list.map(function (o) { return o.totalEq; }).concat([cash.totalEq]);
+
+    var xmin = Math.min.apply(null, xs), xmax = Math.max.apply(null, xs);
+    var padX = (xmax - xmin) * 0.14 || 40;
+    xmin -= padX; xmax += padX;
+    var ymin = Math.min.apply(null, ys), ymax = Math.max.apply(null, ys);
+    var padY = (ymax - ymin) * 0.18 || 40;
+    ymin -= padY; ymax += padY;
+
+    var sx = function (v) { return P.l + ((v - xmin) / (xmax - xmin)) * (W - P.l - P.r); };
+    var sy = function (v) { return H - P.b - ((v - ymin) / (ymax - ymin)) * (H - P.t - P.b); };
+
+    var xt = niceTicks(xmin, xmax, 5);
+    var yt = niceTicks(ymin, ymax, 5);
+    var g = "";
+
+    yt.forEach(function (v) {
+      g += '<line class="grid-line" x1="' + P.l + '" y1="' + sy(v) + '" x2="' + (W - P.r) +
+        '" y2="' + sy(v) + '"/>' +
+        '<text x="' + (P.l - 10) + '" y="' + (sy(v) + 3.5) + '" text-anchor="end">' +
+        fmtN(v, 0) + "</text>";
+    });
+    xt.forEach(function (v) {
+      g += '<text x="' + sx(v) + '" y="' + (H - P.b + 18) + '" text-anchor="middle">' +
+        fmtN(v, 0) + "</text>";
+    });
+
+    g += '<line class="axis-line" x1="' + P.l + '" y1="' + (H - P.b) + '" x2="' + (W - P.r) +
+      '" y2="' + (H - P.b) + '"/>' +
+      '<line class="axis-line" x1="' + P.l + '" y1="' + P.t + '" x2="' + P.l + '" y2="' +
+      (H - P.b) + '"/>';
+
+    g += '<text class="axis-title" x="' + (P.l + (W - P.l - P.r) / 2) + '" y="' + (H - 8) +
+      '" text-anchor="middle">Cuota nominal (€/mes, IVA incluido)</text>';
+    g += '<text class="axis-title" transform="translate(14 ' + (P.t + (H - P.t - P.b) / 2) +
+      ') rotate(-90)" text-anchor="middle">Coste total equivalente (€/mes)</text>';
+
+    /* Referencia: compra al contado */
+    var yc = sy(cash.totalEq);
+    g += '<line x1="' + P.l + '" y1="' + yc + '" x2="' + (W - P.r) + '" y2="' + yc +
+      '" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="6 5" opacity="0.75"/>' +
+      '<text class="lbl-muted" x="' + (W - P.r) + '" y="' + (yc - 7) +
+      '" text-anchor="end" fill="#c4b5fd">Compra al contado · ' + fmtE(cash.totalEq) + "/mes</text>";
+
+    list.forEach(function (o) {
+      var r = 6 + Math.min(9, Math.sqrt(o.entradaAjustada) / 13);
+      var cx = sx(o.cuotaAjustada), cy = sy(o.totalEq);
+      var tip = [
+        o.proveedor + " · " + o.version,
+        "Cuota nominal: " + fmtE(o.cuotaAjustada, 0) + "/mes",
+        "Coste equivalente: " + fmtE(o.totalEq, 0) + "/mes",
+        "Entrada: " + fmtE(o.entradaAjustada)
+      ].join("|");
+      g += '<g class="pt" data-tip="' + esc(tip) + '" data-id="' + o.id + '">' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="' + r.toFixed(1) + '" fill="' +
+        versionColor(o.version) + '" fill-opacity="0.82" stroke="#06080c" stroke-width="2"/>' +
+        "</g>";
+    });
+
+    $("#scatter").innerHTML =
+      '<svg class="chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Relación entre cuota nominal y coste total equivalente">' +
+      "<title>Cuota nominal frente a coste total equivalente</title>" + g + "</svg>";
+
+    $$("#scatter .pt").forEach(function (p) {
+      p.addEventListener("click", function () { selectOffer(p.getAttribute("data-id")); });
+    });
+  }
+
+  /* ------------------------------------------------------------
+     Flujo de caja acumulado
+     ------------------------------------------------------------ */
+
+  function cumOffer(o, n) {
+    var extras = o.tiresYear + o.insuranceYear + o.maintenanceYear + o.taxYear + o.franchiseYear;
+    var pts = [{ m: 0, v: o.entradaAjustada }];
+    var acc = o.entradaAjustada;
+    for (var m = 1; m <= n; m++) {
+      var itv = !o.incluye.itv && m > 36 ? state.itv / 12 : 0;
+      acc += o.cuotaAjustada + extras / 12 + o.energyYear / 12 + itv;
+      pts.push({ m: m, v: acc });
+    }
+    return pts;
+  }
+
+  function cumCash(p, n) {
+    var pts = [{ m: 0, v: p.pvp }];
+    var acc = p.pvp;
+    for (var m = 1; m <= n; m++) {
+      acc += E.runningMonthly(p.version, state, m).total;
+      pts.push({ m: m, v: acc });
+    }
+    return pts;
+  }
+
+  function cumFinance(p, n) {
+    var f = p.finance;
+    var pts = [{ m: 0, v: f.entrada }];
+    var acc = f.entrada;
+    for (var m = 1; m <= n; m++) {
+      acc += f.cuota + E.runningMonthly(p.version, state, m).total;
+      if (m === n) acc += f.ultima;
+      pts.push({ m: m, v: acc });
+    }
+    return pts;
+  }
+
+  function renderFlow(list) {
+    var W = 760, H = 310, P = { l: 64, r: 22, t: 18, b: 42 };
+    var n = state.horizon;
+    var best = selectedOffer(list);
+    var cash = cashM();
+    var fin = finM();
+    var series = [];
+
+    if (best) {
+      series.push({
+        name: best.proveedor + " · " + best.version,
+        color: versionColor(best.version),
+        pts: cumOffer(best, n),
+        kind: "rent"
+      });
+    }
+    series.push({
+      name: "Compra al contado",
+      color: "#a78bfa",
+      pts: cumCash(cash, n),
+      kind: "cash",
+      residual: cash.residual
+    });
+    if (fin) {
+      series.push({
+        name: "Compra financiada",
+        color: "#f59e0b",
+        pts: cumFinance(fin, n),
+        kind: "fin"
+      });
+    }
+
+    var maxV = 0;
+    series.forEach(function (s) {
+      s.pts.forEach(function (p) { if (p.v > maxV) maxV = p.v; });
+    });
+    maxV *= 1.06;
+
+    var sx = function (m) { return P.l + (m / n) * (W - P.l - P.r); };
+    var sy = function (v) { return H - P.b - (v / maxV) * (H - P.t - P.b); };
+
+    var yt = niceTicks(0, maxV, 5);
+    var g = "";
+    yt.forEach(function (v) {
+      g += '<line class="grid-line" x1="' + P.l + '" y1="' + sy(v) + '" x2="' + (W - P.r) +
+        '" y2="' + sy(v) + '"/>' +
+        '<text x="' + (P.l - 10) + '" y="' + (sy(v) + 3.5) + '" text-anchor="end">' +
+        fmtN(v / 1000, 0) + "k</text>";
+    });
+    var stepM = n / 4;
+    for (var i = 0; i <= 4; i++) {
+      var m = Math.round(stepM * i);
+      g += '<text x="' + sx(m) + '" y="' + (H - P.b + 18) + '" text-anchor="middle">' +
+        m + " m</text>";
+    }
+    g += '<line class="axis-line" x1="' + P.l + '" y1="' + (H - P.b) + '" x2="' + (W - P.r) +
+      '" y2="' + (H - P.b) + '"/>';
+    g += '<text class="axis-title" x="' + (P.l - 10) + '" y="' + (P.t - 4) +
+      '" text-anchor="end">€</text>';
+
+    series.forEach(function (s, idx) {
+      var d = s.pts.map(function (p, k) {
+        return (k === 0 ? "M" : "L") + sx(p.m).toFixed(1) + " " + sy(p.v).toFixed(1);
+      }).join(" ");
+      g += '<path class="line" d="' + d + '" stroke="' + s.color +
+        '" pathLength="1" style="animation-delay:' + idx * 0.12 + 's"/>';
+      var last = s.pts[s.pts.length - 1];
+      g += '<circle class="dot-end" cx="' + sx(last.m) + '" cy="' + sy(last.v) +
+        '" r="4" fill="' + s.color + '" stroke="#06080c" stroke-width="2"/>';
+
+      if (s.kind === "cash" && s.residual > 0) {
+        var net = last.v - s.residual;
+        g += '<line x1="' + sx(n) + '" y1="' + sy(last.v) + '" x2="' + sx(n) + '" y2="' +
+          sy(net) + '" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.8"/>' +
+          '<circle cx="' + sx(n) + '" cy="' + sy(net) +
+          '" r="4.5" fill="#06080c" stroke="#a78bfa" stroke-width="2"/>' +
+          '<text class="lbl-muted" x="' + (sx(n) - 8) + '" y="' + (sy(net) + 4) +
+          '" text-anchor="end" fill="#c4b5fd">neto ' + fmtE(net) + "</text>";
+      }
+    });
+
+    $("#flow").innerHTML =
+      '<svg class="chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Flujo de caja acumulado">' +
+      "<title>Desembolso acumulado mes a mes</title>" + g + "</svg>";
+
+    $("#flow-legend").innerHTML = series
+      .map(function (s) {
+        return '<span><i style="background:' + s.color + '"></i>' + esc(s.name) + "</span>";
+      })
+      .join("");
+
+    var rentEnd = series[0] && series[0].kind === "rent" ? series[0].pts[series[0].pts.length - 1].v : 0;
+    $("#flow-note").innerHTML =
+      "Desembolso nominal acumulado, sin descontar. En la compra, el punto hueco resta el valor " +
+      "residual estimado (" + fmtE(cash.residual) + ") para mostrar el coste neto si se vende al final. " +
+      "El renting no recupera nada: al terminar el contrato no hay coche.";
+    void rentEnd;
+  }
+
+  /* ------------------------------------------------------------
+     Donut de desglose
+     ------------------------------------------------------------ */
+
+  function renderDonut(list) {
+    var o = selectedOffer(list);
+    if (!o) return;
+    var order = ["entrada", "cuota", "extras", "energia"];
+    var total = o.totalEq;
+    var acc = 0;
+    var segs = "";
+    var legend = "";
+
+    order.forEach(function (k) {
+      var val = o.components[k];
+      if (val <= 0.5) return;
+      var len = (val / total) * 100;
+      segs +=
+        '<circle cx="90" cy="90" r="64" fill="none" stroke="' + COMP_COLORS[k] +
+        '" stroke-width="20" pathLength="100" stroke-dasharray="' + len.toFixed(2) +
+        " " + (100 - len).toFixed(2) + '" stroke-dashoffset="' + (-acc).toFixed(2) +
+        '" stroke-linecap="butt"/>';
+      acc += len;
+      legend +=
+        '<div class="dl-row"><i style="background:' + COMP_COLORS[k] + '"></i>' +
+        '<span class="dl-name">' + COMP_LABELS[k] + "</span>" +
+        '<span class="dl-val">' + fmtE(val) + " <small>" + fmtN((val / total) * 100, 0) +
+        " %</small></span></div>";
+    });
+
+    var svg =
+      '<svg viewBox="0 0 180 180" role="img" aria-label="Desglose del coste equivalente">' +
+      '<g transform="rotate(-90 90 90)">' +
+      '<circle cx="90" cy="90" r="64" fill="none" stroke="rgba(148,163,184,0.12)" stroke-width="20"/>' +
+      segs + "</g>" +
+      '<text x="90" y="86" text-anchor="middle" fill="#e9eef6" font-size="21" font-weight="700">' +
+      fmtE(total, 0) + "</text>" +
+      '<text x="90" y="104" text-anchor="middle" fill="#64748b" font-size="10">/ mes equivalente</text>' +
+      "</svg>";
+
+    $("#donut").innerHTML = svg;
+    $("#donut-legend").innerHTML = legend;
+
+    var extrasTotal =
+      o.tiresYear + o.insuranceYear + o.maintenanceYear + o.taxYear +
+      o.franchiseYear + o.itvTotal / (o.meses / 12);
+    $("#donut-stats").innerHTML =
+      '<div class="ds"><span>Cuota real</span><b>' + fmtE(o.cuotaAjustada, 0) + "/mes</b></div>" +
+      '<div class="ds"><span>Entrada</span><b>' + fmtE(o.entradaAjustada) + "</b></div>" +
+      '<div class="ds"><span>Costes no cubiertos</span><b>' + fmtE(extrasTotal) + "/año</b></div>" +
+      '<div class="ds"><span>Energía</span><b>' + fmtE(o.energyYear) + "/año</b></div>" +
+      '<div class="ds wide"><span>Total nominal</span><b>' + fmtE(o.nominalTotal) + "</b></div>";
+
+    $("#donut-title").textContent = o.proveedor + " · " + o.version + " · " + o.meses + " meses";
+    $("#donut-sub").textContent =
+      "Cuota " + fmtE(o.cuotaAjustada, 0) + " + entrada " + fmtE(o.entradaAjustada) +
+      " + costes no cubiertos y energía, normalizados con VPN al " + fmtN(state.discount, 1) + " %.";
+  }
+
+  /* ------------------------------------------------------------
+     Comparativa por plazo
+     ------------------------------------------------------------ */
+
+  function renderHorizonCards() {
+    var html = "";
+    [36, 48, 60].forEach(function (h) {
+      var s = Object.assign({}, state, { horizon: h });
+      var list = E.offerList(s).sort(function (a, b) { return a.totalEq - b.totalEq; });
+      var best = list[0] || null;
+      var cash = E.purchaseCashMetrics(state.benchmarkVersion, s);
+      var fin = h === 48 ? E.purchaseFinanceMetrics(state.benchmarkVersion, s) : null;
+      var diff = best ? cash.totalEq - best.totalEq : 0;
+      var rentWins = diff > 0;
+
+      html += '<div class="hz' + (h === state.horizon ? " is-current" : "") + '">' +
+        '<div class="hz-top"><span class="hz-title">' + h + " meses</span>" +
+        (best ? '<span class="hz-win ' + (rentWins ? "rent" : "buy") + '">' +
+          (rentWins ? "Renting" : "Compra") + "</span>" : "") + "</div>";
+
+      if (best) {
+        html += '<div class="hz-rows">' +
+          '<div class="hz-row"><span>Mejor renting · ' + esc(best.proveedor) + " " +
+          esc(best.version) + "</span><b>" + fmtE(best.totalEq) + "</b></div>" +
+          '<div class="hz-row"><span>Compra al contado · ' + esc(cash.version) +
+          "</span><b>" + fmtE(cash.totalEq) + "</b></div>" +
+          (fin
+            ? '<div class="hz-row"><span>Compra financiada</span><b>' + fmtE(fin.totalEq) +
+              "</b></div>"
+            : '<div class="hz-row"><span>Compra financiada</span><b>—</b></div>') +
+          "</div>" +
+          '<div class="hz-delta">' +
+          (Math.abs(diff) < 0.5
+            ? "Empate técnico"
+            : "Diferencia: <b>" + fmtE(Math.abs(diff)) + "/mes</b> a favor " +
+              (rentWins ? "del renting" : "de la compra") + " · <b>" +
+              fmtE(Math.abs(diff) * h) + "</b> en total") +
+          "</div>";
+      } else {
+        html += '<div class="hz-delta">Sin ofertas para este plazo con los filtros actuales.</div>';
+      }
+      html += "</div>";
+    });
+    $("#horizon-grid").innerHTML = html;
+  }
+
+  /* ------------------------------------------------------------
+     Curva de cruce
+     ------------------------------------------------------------ */
+
+  function rentingAt(h) {
+    var pts = [];
+    [36, 48, 60].forEach(function (hh) {
+      var b = bestAt(hh);
+      if (b) pts.push({ h: hh, v: b.totalEq, o: b });
+    });
+    if (!pts.length) return null;
+    if (h <= pts[0].h) return { h: h, v: pts[0].v, o: pts[0].o };
+    for (var i = 0; i < pts.length - 1; i++) {
+      if (h >= pts[i].h && h <= pts[i + 1].h) {
+        var k = (h - pts[i].h) / (pts[i + 1].h - pts[i].h);
+        return {
+          h: h,
+          v: pts[i].v + (pts[i + 1].v - pts[i].v) * k,
+          o: k < 0.5 ? pts[i].o : pts[i + 1].o
+        };
+      }
+    }
+    var last = pts[pts.length - 1];
+    return { h: h, v: last.v, o: last.o };
+  }
+
+  function renderCrossover() {
+    var W = 760, H = 300, P = { l: 62, r: 22, t: 22, b: 44 };
+    var hs = [];
+    for (var h = 36; h <= 60; h += 2) hs.push(h);
+
+    var rent = hs.map(function (h) { return { h: h, v: rentingAt(h).v }; });
+    var cashPts = hs.map(function (h) {
+      return { h: h, v: E.purchaseCashMetrics(state.benchmarkVersion, Object.assign({}, state, { horizon: h })).totalEq };
+    });
+
+    var all = rent.concat(cashPts).map(function (p) { return p.v; });
+    var ymin = Math.min.apply(null, all), ymax = Math.max.apply(null, all);
+    var pad = (ymax - ymin) * 0.25 || 30;
+    ymin -= pad; ymax += pad;
+
+    var sx = function (h) { return P.l + ((h - 36) / 24) * (W - P.l - P.r); };
+    var sy = function (v) { return H - P.b - ((v - ymin) / (ymax - ymin)) * (H - P.t - P.b); };
+
+    var g = "";
+    niceTicks(ymin, ymax, 4).forEach(function (v) {
+      g += '<line class="grid-line" x1="' + P.l + '" y1="' + sy(v) + '" x2="' + (W - P.r) +
+        '" y2="' + sy(v) + '"/>' +
+        '<text x="' + (P.l - 10) + '" y="' + (sy(v) + 3.5) + '" text-anchor="end">' +
+        fmtN(v, 0) + "</text>";
+    });
+    [36, 42, 48, 54, 60].forEach(function (h) {
+      g += '<text x="' + sx(h) + '" y="' + (H - P.b + 18) + '" text-anchor="middle">' +
+        h + " m</text>";
+    });
+    g += '<line class="axis-line" x1="' + P.l + '" y1="' + (H - P.b) + '" x2="' + (W - P.r) +
+      '" y2="' + (H - P.b) + '"/>';
+
+    var path = function (pts) {
+      return pts.map(function (p, i) {
+        return (i === 0 ? "M" : "L") + sx(p.h).toFixed(1) + " " + sy(p.v).toFixed(1);
+      }).join(" ");
+    };
+
+    g += '<path class="line" d="' + path(rent) +
+      '" stroke="#22d3ee" pathLength="1" style="animation:none;stroke-dashoffset:0;stroke-dasharray:6 5;opacity:.9"/>';
+    g += '<path class="line" d="' + path(cashPts) +
+      '" stroke="#a78bfa" pathLength="1" style="animation-delay:.1s"/>';
+
+    /* Cruce */
+    var cross = null;
+    for (var i = 0; i < hs.length - 1; i++) {
+      var d0 = cashPts[i].v - rent[i].v;
+      var d1 = cashPts[i + 1].v - rent[i + 1].v;
+      if (d0 * d1 <= 0 && d0 !== d1) {
+        var k = d0 / (d0 - d1);
+        cross = {
+          h: hs[i] + (hs[i + 1] - hs[i]) * k,
+          v: rent[i].v + (rent[i + 1].v - rent[i].v) * k
+        };
+        break;
+      }
+    }
+
+    if (cross) {
+      g += '<line x1="' + sx(cross.h) + '" y1="' + sy(cross.v) + '" x2="' + sx(cross.h) +
+        '" y2="' + (H - P.b) + '" stroke="#e9eef6" stroke-width="1" stroke-dasharray="3 4" opacity="0.4"/>' +
+        '<circle cx="' + sx(cross.h) + '" cy="' + sy(cross.v) + '" r="6" fill="#06080c" stroke="#e9eef6" stroke-width="2.5"/>' +
+        '<text class="lbl" x="' + (sx(cross.h) + 12) + '" y="' + (sy(cross.v) - 10) + '">Cruce ≈ ' +
+        fmtN(cross.h, 0) + " meses</text>";
+    }
+
+    g += '<text class="lbl" x="' + (W - P.r) + '" y="' + (sy(rent[rent.length - 1].v) - 10) +
+      '" text-anchor="end" fill="#67e8f9">Mejor renting</text>';
+    g += '<text class="lbl" x="' + (W - P.r) + '" y="' + (sy(cashPts[cashPts.length - 1].v) + 20) +
+      '" text-anchor="end" fill="#c4b5fd">Compra al contado</text>';
+
+    $("#crossover").innerHTML =
+      '<svg class="chart" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Punto de cruce entre renting y compra">' +
+      "<title>Coste equivalente según el plazo</title>" + g + "</svg>";
+
+    $("#crossover-note").innerHTML = cross
+      ? "Con los supuestos actuales, el renting sale más barato hasta los <b>" +
+        fmtN(cross.h, 0) + " meses</b>; a partir de ahí la compra al contado acumula menos coste. " +
+        "La línea de renting interpola la mejor oferta disponible a 36, 48 y 60 meses."
+      : "Con los supuestos actuales no se detecta un cruce entre 36 y 60 meses.";
+  }
+
+  /* ------------------------------------------------------------
+     Tabla
+     ------------------------------------------------------------ */
+
+  function tableRows(list) {
+    var rows = list.map(function (o) {
+      return {
+        id: o.id,
+        name: o.proveedor,
+        version: o.version,
+        months: o.meses,
+        entrada: o.entradaAjustada,
+        cuota: o.cuotaAjustada,
+        nominal: o.nominalTotal,
+        eq: o.totalEq,
+        badge: o.badge,
+        cat: "renting"
+      };
+    });
+    var c = cashM();
+    rows.push({
+      id: c.id,
+      name: "Compra al contado",
+      version: c.version,
+      months: c.meses,
+      entrada: c.pvp,
+      cuota: null,
+      nominal: c.nominalTotal,
+      eq: c.totalEq,
+      badge: c.badge,
+      cat: "compra"
+    });
+    var f = finM();
+    if (f) {
+      rows.push({
+        id: f.id,
+        name: "Toyota Easy Plus",
+        version: f.version,
+        months: f.meses,
+        entrada: f.finance.entrada,
+        cuota: f.finance.cuota,
+        nominal: f.nominalTotal,
+        eq: f.totalEq,
+        badge: f.badge,
+        cat: "compra"
+      });
+    }
+    return rows;
+  }
+
+  function renderTable(list) {
+    var rows = tableRows(list);
+    rows.sort(function (a, b) {
+      var x = a[sort.key], y = b[sort.key];
+      if (x == null && y == null) return 0;
+      if (x == null) return 1;
+      if (y == null) return -1;
+      if (typeof x === "string") return x.localeCompare(y, "es") * sort.dir;
+      return (x - y) * sort.dir;
+    });
+
+    var html = rows.map(function (r) {
+      var sel = r.id === selectedId;
+      return '<tr class="' + (sel ? "is-sel " : "") + (r.cat === "compra" ? "bench" : "") +
+        '" data-id="' + r.id + '">' +
+        '<td><span class="t-name">' + esc(r.name) + "</span></td>" +
+        '<td><span class="t-ver">' + esc(r.version) + "</span></td>" +
+        "<td>" + r.months + " m</td>" +
+        "<td>" + fmtE(r.entrada) + "</td>" +
+        "<td>" + (r.cuota == null ? "—" : fmtE(r.cuota, 0)) + "</td>" +
+        "<td>" + fmtE(r.nominal) + "</td>" +
+        "<td><strong>" + fmtE(r.eq) + "</strong></td>" +
+        '<td><span class="badge ' + r.badge.tone + '">' + esc(r.badge.label) + "</span></td>" +
+        "</tr>";
+    }).join("");
+
+    $("#table-body").innerHTML = html;
+
+    $$("#table-body tr").forEach(function (tr) {
+      var id = tr.getAttribute("data-id");
+      if (!id || id.indexOf("buy-") === 0) return;
+      tr.addEventListener("click", function () { selectOffer(id); });
+    });
+
+    $$("#offer-table thead th").forEach(function (th) {
+      th.classList.toggle("is-sorted", th.getAttribute("data-sort") === sort.key);
+      var arrow = th.querySelector(".arrow");
+      if (arrow) {
+        arrow.textContent = th.getAttribute("data-sort") === sort.key
+          ? (sort.dir === 1 ? "▲" : "▼")
+          : "↕";
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------
+     Veredicto
+     ------------------------------------------------------------ */
+
+  function renderVerdict(list) {
+    var best = list[0];
+    var cash = cashM();
+    var fin = finM();
+    if (!best) {
+      $("#verdict").innerHTML = '<p class="v-kicker">Sin datos</p><h3>No hay ofertas para este plazo con los filtros actuales.</h3>';
+      return;
+    }
+    var diff = cash.totalEq - best.totalEq;
+    var rentingWins = diff > 0;
+    var html = '<p class="v-kicker">Conclusión para ' + state.horizon + " meses y " +
+      fmtN(state.km) + " km/año</p>";
+
+    html += "<h3>" + (rentingWins ? "El renting es la opción más barata" : "La compra al contado es la opción más barata") +
+      " con los supuestos actuales</h3>";
+
+    html += "<p>El mejor renting es <strong>" + esc(best.proveedor) + " · " +
+      esc(best.version) + " " + esc(best.acabado) + "</strong> con <strong>" +
+      fmtE(best.totalEq) + "/mes equivalente</strong> (cuota " + fmtE(best.cuotaAjustada, 0) +
+      " + entrada " + fmtE(best.entradaAjustada) + " + costes no cubiertos). La compra al contado del " +
+      esc(cash.version) + " cuesta <strong>" + fmtE(cash.totalEq) + "/mes</strong> incluyendo PVP, uso y valor residual. " +
+      "La diferencia es de <strong>" + fmtE(Math.abs(diff)) + "/mes</strong> (" +
+      fmtE(Math.abs(diff) * state.horizon) + " en todo el periodo) a favor " +
+      (rentingWins ? "del renting" : "de la compra") + ".</p>";
+
+    if (fin) {
+      html += "<p>La compra financiada con Toyota Easy Plus sale a <strong>" +
+        fmtE(fin.totalEq) + "/mes</strong>, " + (fin.totalEq > cash.totalEq ? "más cara" : "más barata") +
+        " que pagar al contado. El interés y la última cuota pesan más que el ahorro de no inmovilizar el capital.</p>";
+    }
+
+    if (Math.abs(diff) <= 20) {
+      html += "<p>La diferencia es tan pequeña que cae dentro del margen de error de las estimaciones " +
+        "de kilometraje y de cuota. A este plazo, renting y compra al contado están prácticamente empatados: " +
+        "la decisión real depende de si prefieres no inmovilizar capital o quedarte el coche al final.</p>";
+    }
+
+    html += "<p>El renting incluye seguro, mantenimiento e impuestos, pero no combustible; la compra soporta " +
+      "seguro, mantenimiento, neumáticos, ITV e impuesto de circulación. El cálculo iguala ambas opciones con " +
+      "el mismo uso y un coste de oportunidad del " + fmtN(state.discount, 1) + " % anual.</p>";
+
+    $("#verdict").innerHTML = html;
+  }
+
+  /* ------------------------------------------------------------
+     Supuestos
+     ------------------------------------------------------------ */
+
+  var ASSUMP = [
+    {
+      title: "Energía",
+      items: [
+        { key: "fuel", label: "Gasolina", min: 1.2, max: 2.2, step: 0.01, dec: 2, suffix: " €/l" },
+        { key: "electricity", label: "Electricidad", min: 0.1, max: 0.35, step: 0.005, dec: 3, suffix: " €/kWh" }
+      ]
+    },
+    {
+      title: "Uso y propiedad",
+      items: [
+        { key: "insurance", label: "Seguro anual (compra)", min: 400, max: 1200, step: 25, dec: 0, suffix: " €" },
+        { key: "maintenance", label: "Mantenimiento anual (compra)", min: 150, max: 800, step: 25, dec: 0, suffix: " €" },
+        { key: "tireKm", label: "Neumáticos por km", min: 0, max: 0.03, step: 0.0005, dec: 4, suffix: " €/km" },
+        { key: "itv", label: "ITV", min: 0, max: 120, step: 5, dec: 0, suffix: " €" },
+        { key: "tax", label: "Impuesto de circulación", min: 0, max: 250, step: 10, dec: 0, suffix: " €" },
+        { key: "franchiseProvision", label: "Provisión franquicia", min: 0, max: 600, step: 25, dec: 0, suffix: " €/año" }
+      ]
+    },
+    {
+      title: "Valor residual",
+      items: [
+        { key: "residual3", label: "A 3 años", min: 30, max: 80, step: 1, dec: 0, suffix: " %" },
+        { key: "residual4", label: "A 4 años", min: 25, max: 75, step: 1, dec: 0, suffix: " %" },
+        { key: "residual5", label: "A 5 años", min: 20, max: 70, step: 1, dec: 0, suffix: " %" }
+      ]
+    },
+    {
+      title: "Descuento y financiación",
+      items: [
+        { key: "discount", label: "Tasa de descuento (VPN)", min: 0, max: 8, step: 0.5, dec: 1, suffix: " %" },
+        { key: "entryRate", label: "Tipo al financiar la entrada", min: 0, max: 15, step: 0.25, dec: 2, suffix: " % TIN" }
+      ]
+    }
+  ];
+
+  function paintRange(el) {
+    var min = parseFloat(el.min) || 0;
+    var max = parseFloat(el.max) || 100;
+    var v = parseFloat(el.value);
+    el.style.setProperty("--p", (((v - min) / (max - min)) * 100).toFixed(1) + "%");
+  }
+
+  function renderAssumptions() {
+    var html = '<div class="assump-grid">';
+    ASSUMP.forEach(function (grp) {
+      html += '<div class="assump-group"><h4>' + esc(grp.title) + "</h4>";
+      grp.items.forEach(function (it) {
+        html += '<div class="slider">' +
+          '<div class="slider-top"><label for="a-' + it.key + '">' + esc(it.label) + "</label>" +
+          '<output id="o-' + it.key + '"></output></div>' +
+          '<input type="range" id="a-' + it.key + '" data-key="' + it.key + '" min="' + it.min +
+          '" max="' + it.max + '" step="' + it.step + '" value="' + state[it.key] + '">' +
+          "</div>";
+      });
+      html += "</div>";
+    });
+    html += "</div>";
+    $("#assumptions").innerHTML = html;
+
+    $$("#assumptions input[type=range]").forEach(function (el) {
+      var key = el.getAttribute("data-key");
+      var item = null;
+      ASSUMP.forEach(function (g) {
+        g.items.forEach(function (i) { if (i.key === key) item = i; });
+      });
+      var out = $("#o-" + key);
+      function sync() {
+        out.textContent = fmtN(state[key], item.dec) + item.suffix;
+        el.value = state[key];
+        paintRange(el);
+      }
+      el.addEventListener("input", function () {
+        state[key] = parseFloat(el.value);
+        sync();
+        scheduleRender();
+      });
+      sync();
+    });
+  }
+
+  /* ------------------------------------------------------------
+     Controles
+     ------------------------------------------------------------ */
+
+  function updateControls() {
+    $$("[data-horizon]").forEach(function (b) {
+      b.classList.toggle("is-on", +b.getAttribute("data-horizon") === state.horizon);
+    });
+    $$("[data-entry]").forEach(function (b) {
+      b.classList.toggle("is-on", b.getAttribute("data-entry") === state.entryMode);
+    });
+    $("#custom-wrap").style.display = state.entryMode === "custom" ? "flex" : "none";
+    var ce = $("#customEntry");
+    if (ce) {
+      ce.value = state.customEntry;
+      $("#customEntry-out").textContent = fmtE(state.customEntry);
+      paintRange(ce);
+    }
+    var km = $("#km");
+    km.value = state.km;
+    $("#km-out").textContent = fmtN(state.km) + " km";
+    paintRange(km);
+    $("#estimates").checked = state.includeEstimates;
+    $("#estimates-label").textContent = state.includeEstimates ? "Con estimaciones" : "Solo reales";
+  }
+
+  function bind() {
+    $$("[data-horizon]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        state.horizon = +b.getAttribute("data-horizon");
+        render();
+      });
+    });
+    $$("[data-entry]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        state.entryMode = b.getAttribute("data-entry");
+        render();
+      });
+    });
+    $("#km").addEventListener("input", function (e) {
+      state.km = +e.target.value;
+      scheduleRender();
+    });
+    $("#customEntry").addEventListener("input", function (e) {
+      state.customEntry = +e.target.value;
+      scheduleRender();
+    });
+    $("#estimates").addEventListener("change", function (e) {
+      state.includeEstimates = e.target.checked;
+      render();
+    });
+    $("#reset").addEventListener("click", function () {
+      Object.keys(D.DEFAULTS).forEach(function (k) { state[k] = D.DEFAULTS[k]; });
+      renderAssumptions();
+      render();
+    });
+    $("#csv").addEventListener("click", exportCsv);
+
+    $$("#offer-table thead th[data-sort]").forEach(function (th) {
+      th.addEventListener("click", function () {
+        var key = th.getAttribute("data-sort");
+        if (sort.key === key) sort.dir *= -1;
+        else { sort.key = key; sort.dir = 1; }
+        renderTable(offers());
+      });
+    });
+
+    /* Tooltip global */
+    var tip = $("#tip");
+    document.addEventListener("mouseover", function (e) {
+      var t = e.target.closest && e.target.closest("[data-tip]");
+      if (!t) return;
+      var parts = t.getAttribute("data-tip").split("|");
+      tip.innerHTML = "<b>" + esc(parts[0]) + "</b>" +
+        parts.slice(1).map(function (p) { return "<div>" + esc(p) + "</div>"; }).join("");
+      tip.classList.add("on");
+    });
+    document.addEventListener("mousemove", function (e) {
+      if (!tip.classList.contains("on")) return;
+      var x = e.clientX, y = e.clientY;
+      var w = tip.offsetWidth, h = tip.offsetHeight;
+      x = Math.max(w / 2 + 8, Math.min(window.innerWidth - w / 2 - 8, x));
+      y = Math.max(h + 12, y);
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    });
+    document.addEventListener("mouseout", function (e) {
+      var t = e.target.closest && e.target.closest("[data-tip]");
+      if (t) tip.classList.remove("on");
+    });
+  }
+
+  function exportCsv() {
+    var rows = tableRows(offers());
+    var head = ["Proveedor", "Version", "Meses", "Entrada", "Cuota", "Total nominal", "Coste equivalente", "Tipo"];
+    var lines = [head.join(";")];
+    rows.forEach(function (r) {
+      lines.push([
+        r.name, r.version, r.months,
+        r.entrada.toFixed(2),
+        r.cuota == null ? "" : r.cuota.toFixed(2),
+        r.nominal.toFixed(2),
+        r.eq.toFixed(2),
+        r.badge.label
+      ].join(";"));
+    });
+    var blob = new Blob(["\ufeff" + lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "renting-toyota-chr-" + state.horizon + "m.csv";
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+
+  /* ------------------------------------------------------------
+     Render global
+     ------------------------------------------------------------ */
+
+  function render() {
+    var list = offers();
+    if (!list.some(function (o) { return o.id === selectedId; })) {
+      selectedId = list[0] ? list[0].id : null;
+    }
+    renderKpis(list);
+    renderRanking(list);
+    renderScatter(list);
+    renderFlow(list);
+    renderDonut(list);
+    renderHorizonCards();
+    renderCrossover();
+    renderTable(list);
+    renderVerdict(list);
+    updateControls();
+  }
+
+  function init() {
+    renderAssumptions();
+    bind();
+
+    var nReal = D.OFFERS.filter(function (o) { return o.tipo === "real"; }).length;
+    var nEst = D.OFFERS.length - nReal;
+    $("#hero-facts").innerHTML =
+      '<span class="fact"><b>' + D.OFFERS.length + "</b> ofertas analizadas</span>" +
+      '<span class="fact"><b>' + nReal + "</b> reales · <b>" + nEst + "</b> estimadas</span>" +
+      '<span class="fact">Plazos <b>36 / 48 / 60</b> meses</span>' +
+      '<span class="fact">Referencia <b>15.000 km/año</b></span>' +
+      '<span class="fact">Precios <b>IVA incluido</b></span>' +
+      '<span class="fact">Datos a <b>' + D.META.fecha + "</b></span>";
+
+    var byType = { "Oferta oficial": "oficial", "Financiación": "fin", "Oferta real": "real", "Referencia de mercado": "real", "Descartada": "desc" };
+    $("#sources").innerHTML = D.SOURCES.map(function (s) {
+      return '<article class="src">' +
+        '<div class="src-top"><span class="src-type ' + (byType[s.tipo] || "") + '">' + esc(s.tipo) + "</span>" +
+        '<span class="src-date">' + esc(s.fecha) + "</span></div>" +
+        "<h4>" + esc(s.nombre) + "</h4>" +
+        "<p>" + esc(s.detalle) + "</p>" +
+        '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.url) + "</a>" +
+        "</article>";
+    }).join("");
+
+    $("#market").innerHTML = D.MARKET.map(function (m) {
+      return '<div class="dl-row market"><span class="dl-name"><b style="color:var(--txt)">' +
+        esc(m.etiqueta) + "</b><br><span style=\"color:var(--dim);font-size:.72rem\">" +
+        esc(m.detalle) + "</span></span><span class=\"dl-val\">" + esc(m.valor) + "</span></div>";
+    }).join("");
+
+    $("#discarded").innerHTML = D.DISCARDED.map(function (d) {
+      return '<div class="note"><h4>' + esc(d.nombre) + "</h4><p>" + esc(d.motivo) + "</p></div>";
+    }).join("");
+
+    $("#meta-date").textContent = D.META.fecha;
+    $("#meta-vigencia").textContent = D.META.vigencia;
+
+    render();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Toyota C-HR híbrido: renting vs compra · estudio cuantitativo</title>
+<meta name="description" content="Estudio cuantitativo de las ofertas de renting del Toyota C-HR híbrido para particulares en España, con benchmark de compra al contado y financiada. 36, 48 y 60 meses; 15.000 km/año.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#06080c">
+<style>/*STYLES*/</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="pulse"></span>Estudio de mercado · España · <span id="meta-date">10/11/2026</span></span>
+    <h1>Toyota C-HR híbrido:<br><span class="grad">renting o compra</span>, con números</h1>
+    <p class="lede">
+      Doce ofertas para particulares comparadas en <b>coste total real</b>: entrada, cuota,
+      energía y todo lo que la cuota no cubre. Con y sin entrada, a 36, 48 y 60 meses,
+      y con la compra al contado y financiada como referencia.
+    </p>
+    <div class="facts" id="hero-facts"></div>
+
+    <div class="kpis">
+      <article class="kpi" data-accent="cyan">
+        <div class="kpi-head"><span class="dot"></span><span>Mejor renting</span></div>
+        <div class="kpi-value" id="kpi1-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi1-name">—</div>
+        <div class="kpi-foot" id="kpi1-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="violet">
+        <div class="kpi-head"><span class="dot"></span><span>Compra al contado</span></div>
+        <div class="kpi-value" id="kpi2-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi2-name">—</div>
+        <div class="kpi-foot" id="kpi2-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="amber">
+        <div class="kpi-head"><span class="dot"></span><span>Compra financiada</span></div>
+        <div class="kpi-value" id="kpi3-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi3-name">—</div>
+        <div class="kpi-foot" id="kpi3-foot">—</div>
+      </article>
+      <article class="kpi" data-accent="emerald">
+        <div class="kpi-head"><span class="dot"></span><span>Diferencia</span></div>
+        <div class="kpi-value" id="kpi4-value"><span class="v">—</span><small></small></div>
+        <div class="kpi-name" id="kpi4-name">—</div>
+        <div class="kpi-foot" id="kpi4-foot">—</div>
+      </article>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar" id="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="ctl">
+      <span class="ctl-label">Plazo</span>
+      <div class="segmented" role="group" aria-label="Plazo del contrato">
+        <button type="button" data-horizon="36">36 m</button>
+        <button type="button" data-horizon="48">48 m</button>
+        <button type="button" data-horizon="60">60 m</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label">Entrada</span>
+      <div class="segmented" role="group" aria-label="Modo de entrada">
+        <button type="button" data-entry="published">Publicada</button>
+        <button type="button" data-entry="zero">Sin entrada</button>
+        <button type="button" data-entry="custom">Personalizada</button>
+      </div>
+    </div>
+    <div class="ctl range-mini" id="custom-wrap" style="display:none">
+      <input type="range" id="customEntry" min="0" max="15000" step="250" value="3000" aria-label="Entrada personalizada">
+      <output id="customEntry-out">3.000 €</output>
+    </div>
+    <div class="ctl range-mini">
+      <span class="ctl-label">Km/año</span>
+      <input type="range" id="km" min="10000" max="25000" step="1000" value="15000" style="width:104px" aria-label="Kilómetros al año">
+      <output id="km-out">15.000 km</output>
+    </div>
+    <label class="switch">
+      <input type="checkbox" id="estimates" checked>
+      <span class="track"></span>
+      <span id="estimates-label">Con estimaciones</span>
+    </label>
+    <button type="button" class="btn" id="csv" style="margin-left:auto">↓ CSV</button>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+
+    <!-- 01 · RANKING -->
+    <section class="section" id="ranking">
+      <div class="section-head">
+        <div>
+          <div class="kicker">01 · Ranking</div>
+          <h2>Qué cuesta cada oferta, mes a mes</h2>
+          <p>
+            Ordenado por coste total equivalente: la cuota, la entrada repartida y los costes que
+            la oferta no cubre, todo normalizado a €/mes con un descuento del 3&nbsp;% anual.
+          </p>
+        </div>
+        <div class="legend">
+          <span><i style="background:#f59e0b"></i>Entrada</span>
+          <span><i style="background:#22d3ee"></i>Cuota</span>
+          <span><i style="background:#a78bfa"></i>Extras no incluidos</span>
+          <span><i style="background:#34d399"></i>Energía</span>
+        </div>
+      </div>
+
+      <div class="rank-grid">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Ofertas de renting</div>
+              <div class="card-sub">Pulsa una fila para ver su desglose y su flujo de caja</div>
+            </div>
+          </div>
+          <div class="rank-list" id="rank-list"></div>
+        </div>
+
+        <div class="stack">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="card-title" id="donut-title">Desglose</div>
+                <div class="card-sub" id="donut-sub"></div>
+              </div>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut" id="donut"></div>
+              <div class="donut-legend" id="donut-legend"></div>
+            </div>
+            <div class="donut-stats" id="donut-stats"></div>
+            <div class="chart-note">
+              La entrada se reparte en cuotas mensuales equivalentes para poder compararla con
+              quien no da entrada. No es la cuota que se paga cada mes.
+            </div>
+          </div>
+
+          <div class="callout">
+            <div class="ic">i</div>
+            <div>
+              <h3>Cómo se calcula el €/mes equivalente</h3>
+              <p>
+                Se construye el flujo de caja mes a mes (entrada en el mes 0, cuotas y costes del 1 al n),
+                se descuenta a la tasa anual elegida y se divide por el factor de anualidad. Así, una entrada
+                de 4.583 € no desaparece: se convierte en la cuota mensual que haría falta para financiarla.
+              </p>
+              <p>
+                Es una métrica de comparación, no una cuota contractual. La cuota real que se paga
+                cada mes aparece en la tabla y en el ranking.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · DISPERSIÓN Y FLUJO -->
+    <section class="section" id="comparacion">
+      <div class="section-head">
+        <div>
+          <div class="kicker">02 · Comparación</div>
+          <h2>La cuota no es el coste</h2>
+          <p>
+            Una cuota baja con una entrada alta puede parecer barata. El eje vertical añade
+            entrada, energía y lo que no está incluido; la línea morada marca lo que cuesta
+            comprar el coche.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Cuota nominal vs. coste equivalente</div>
+              <div class="card-sub">Cada burbuja es una oferta; el tamaño refleja la entrada</div>
+            </div>
+          </div>
+          <div id="scatter"></div>
+          <div class="chart-note">
+            Por encima de la referencia de compra, la oferta es más cara que comprar el coche.
+            Pasa el cursor por cada punto para ver el detalle.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Desembolso acumulado</div>
+              <div class="card-sub">Dinero que sale del bolsillo, mes a mes</div>
+            </div>
+            <div class="legend" id="flow-legend"></div>
+          </div>
+          <div id="flow"></div>
+          <div class="chart-note" id="flow-note"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · PLAZOS -->
+    <section class="section" id="plazos">
+      <div class="section-head">
+        <div>
+          <div class="kicker">03 · Plazos</div>
+          <h2>3, 4 o 5 años: cambia el ganador</h2>
+          <p>
+            El renting concentra el coste en la cuota; la compra inmoviliza capital pero deja
+            un coche con valor. El punto de cruce depende del plazo y del valor residual.
+          </p>
+        </div>
+      </div>
+
+      <div class="horizon-grid" id="horizon-grid"></div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-head">
+          <div>
+            <div class="card-title">Dónde se cruzan las curvas</div>
+            <div class="card-sub">Coste equivalente según el plazo del contrato o de la propiedad</div>
+          </div>
+        </div>
+        <div id="crossover"></div>
+        <div class="chart-note" id="crossover-note"></div>
+      </div>
+    </section>
+
+    <!-- 04 · TABLA -->
+    <section class="section" id="tabla">
+      <div class="section-head">
+        <div>
+          <div class="kicker">04 · Datos</div>
+          <h2>Todas las cifras, ordenables</h2>
+          <p>
+            Pulsa las cabeceras para ordenar. Las filas moradas son referencias de compra,
+            no ofertas de renting.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:0;overflow:hidden">
+        <div class="table-wrap" style="border:0">
+          <table id="offer-table">
+            <thead>
+              <tr>
+                <th data-sort="name"><button type="button">Proveedor <span class="arrow">↕</span></button></th>
+                <th data-sort="version"><button type="button">Versión <span class="arrow">↕</span></button></th>
+                <th data-sort="months"><button type="button">Plazo <span class="arrow">↕</span></button></th>
+                <th data-sort="entrada"><button type="button">Entrada <span class="arrow">↕</span></button></th>
+                <th data-sort="cuota"><button type="button">Cuota <span class="arrow">↕</span></button></th>
+                <th data-sort="nominal"><button type="button">Total nominal <span class="arrow">↕</span></button></th>
+                <th data-sort="eq" class="is-sorted"><button type="button">€/mes eq. <span class="arrow">▲</span></button></th>
+                <th>Tipo</th>
+              </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="chart-note">
+        Total nominal = suma de entrada, cuotas y costes no cubiertos, sin descontar.
+        €/mes eq. = mismo coste repartido en cuotas iguales con un descuento anual del 3&nbsp;%.
+      </div>
+    </section>
+
+    <!-- 05 · SUPUESTOS -->
+    <section class="section" id="supuestos">
+      <div class="section-head">
+        <div>
+          <div class="kicker">05 · Supuestos</div>
+          <h2>Mueve las piezas</h2>
+          <p>
+            Todo el estudio es paramétrico. Cambia el precio de la energía, el seguro, el valor
+            residual o la tasa de descuento y el ranking se recalcula al instante.
+          </p>
+        </div>
+      </div>
+
+      <details class="assump" open>
+        <summary>
+          <span>Parámetros del modelo</span>
+          <span class="chev">▾</span>
+        </summary>
+        <div class="assump-body">
+          <div id="assumptions"></div>
+          <div class="assump-actions">
+            <button type="button" class="btn primary" id="reset">Restablecer valores</button>
+          </div>
+        </div>
+      </details>
+
+      <div class="callout" style="margin-top:16px">
+        <div class="ic">↺</div>
+        <div>
+          <h3>Los cambios son solo para esta sesión</h3>
+          <p>
+            El informe no guarda nada: al recargar vuelven los valores base. El botón
+            «Restablecer valores» devuelve todos los parámetros a su punto de partida sin recargar.
+            El CSV exporta la tabla con los supuestos que tengas activos en ese momento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · CONCLUSIÓN -->
+    <section class="section" id="conclusion">
+      <div class="section-head">
+        <div>
+          <div class="kicker">06 · Conclusión</div>
+          <h2>Qué haría con estos números</h2>
+        </div>
+      </div>
+      <div class="verdict" id="verdict"></div>
+
+      <div class="note-list" style="margin-top:16px">
+        <div class="note">
+          <h4>El seguro y el mantenimiento no son gratis en ninguna opción</h4>
+          <p>
+            En el renting van dentro de la cuota; en la compra se pagan aparte. El modelo los suma
+            en ambos casos, de modo que la comparación no premia a la compra por olvidar costes.
+          </p>
+        </div>
+        <div class="note">
+          <h4>El 220PH solo compensa si se enchufa de verdad</h4>
+          <p>
+            Su cuota y su entrada son más altas. El ahorro de combustible depende de hacer la mayor
+            parte de los kilómetros en eléctrico; con el consumo mixto supuesto, la ventaja energética
+            no cubre la diferencia de precio.
+          </p>
+        </div>
+        <div class="note">
+          <h4>El valor residual es la variable más frágil</h4>
+          <p>
+            Se asume un 62&nbsp;% a 3 años, 54&nbsp;% a 4 y 46&nbsp;% a 5. Si el mercado de segunda mano
+            se debilita, la compra empeora; si se fortalece, mejora. Pruébalo en los supuestos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · FUENTES -->
+    <section class="section" id="fuentes">
+      <div class="section-head">
+        <div>
+          <div class="kicker">07 · Fuentes</div>
+          <h2>De dónde sale cada número</h2>
+          <p>
+            Precios consultados el 10/11/2026. Las ofertas oficiales de Toyota están vigentes hasta
+            el 30/11/2026 en Península y Baleares. Cada ficha indica qué se ha verificado y qué se ha estimado.
+          </p>
+        </div>
+      </div>
+
+      <div class="src-grid" id="sources"></div>
+
+      <div class="two-col" style="margin-top:16px">
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Referencias de mercado</div>
+              <div class="card-sub">Contraste con agregadores, no usadas en el ranking</div>
+            </div>
+          </div>
+          <div id="market"></div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="card-title">Qué se ha descartado y por qué</div>
+              <div class="card-sub">Transparencia sobre los límites del estudio</div>
+            </div>
+          </div>
+          <div class="note-list" id="discarded"></div>
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <div class="card" style="margin-top:24px">
+        <p>Este informe necesita JavaScript para calcular y dibujar los gráficos. Los datos están
+        embebidos en el propio archivo, sin conexión a internet.</p>
+      </div>
+    </noscript>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <p>
+      <strong>Toyota C-HR híbrido · renting vs compra.</strong> Estudio independiente elaborado con
+      precios públicos de Toyota España, REVEL, Total Renting y Swipcar. No es una oferta comercial
+      ni asesoramiento financiero. <span id="meta-vigencia"></span>
+    </p>
+    <p>Datos a <span id="meta-date">10/11/2026</span> · Importes en EUR con IVA incluido · Cálculos propios.</p>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>/*DATA*/</script>
+<script>/*ENGINE*/</script>
+<script>/*APP*/</script>
+</body>
+</html>

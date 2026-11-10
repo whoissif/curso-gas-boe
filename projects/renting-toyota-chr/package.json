@@ -1,0 +1,16 @@
+{
+  "name": "renting-toyota-chr",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Estudio cuantitativo de renting del Toyota C-HR híbrido con benchmark de compra",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node tests/engine.test.mjs",
+    "check": "node tests/ui.check.mjs",
+    "all": "node build.mjs && node tests/engine.test.mjs && node tests/ui.check.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0"
+  }
+}
