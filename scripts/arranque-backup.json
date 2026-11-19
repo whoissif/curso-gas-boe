@@ -1,0 +1,74 @@
+﻿{
+    "Tasks":  [
+                  {
+                      "Path":  "\\",
+                      "Name":  "OneDrive Startup Task-S-1-5-21-134945033-3350171178-3552450777-1002",
+                      "State":  "Ready"
+                  }
+              ],
+    "SoloUsuario":  true,
+    "RunEntries":  [
+                       {
+                           "Name":  "OneDrive",
+                           "Value":  "\"C:\\Users\\root\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe\" /background",
+                           "Exists":  true
+                       },
+                       {
+                           "Name":  "Docker Desktop",
+                           "Value":  "C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe",
+                           "Exists":  true
+                       },
+                       {
+                           "Name":  "MicrosoftCopilotAutoLaunch_DC01AC635201E1BA13BDB8ACCE8A97DF",
+                           "Value":  "\"C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe\" --no-startup-window --win-session-start",
+                           "Exists":  true
+                       },
+                       {
+                           "Name":  "MicrosoftEdgeAutoLaunch_DD8D0EC99D58FD1D2F3ABBB0979B792C",
+                           "Value":  "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --no-startup-window --win-session-start",
+                           "Exists":  true
+                       },
+                       {
+                           "Name":  "RustDesk Tray",
+                           "Value":  "",
+                           "Exists":  false
+                       }
+                   ],
+    "Services":  [
+                     {
+                         "Status":  "Stopped",
+                         "Name":  "CxUIUSvc",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "niLXIDiscovery",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "nimDNSResponder",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "NiSvcLoc",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "mxssvr",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "Spooler",
+                         "StartType":  "Automatic"
+                     },
+                     {
+                         "Status":  "Running",
+                         "Name":  "DiagTrack",
+                         "StartType":  "Automatic"
+                     }
+                 ]
+}

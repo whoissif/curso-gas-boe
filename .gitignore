@@ -1,0 +1,35 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+out/
+target/
+.gradle/
+*.egg-info/
+
+# Entornos y secretos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+
+# Herramientas
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# OpenCode
+.opencode/cache/
+
+# Perfil local de MCP (puede contener sesion corporativa)
+.mcp/

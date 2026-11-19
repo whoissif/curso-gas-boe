@@ -1,0 +1,40 @@
+{
+  // Configuracion del proyecto. Se recarga sola al guardar.
+  "$schema": "https://opencode.ai/config.json",
+
+  // Agente principal por defecto: checkpoints cada 8 pasos.
+  "default_agent": "runner",
+
+  // Formatea automaticamente tras escribir/editar (si hay formateadores disponibles).
+  "formatter": true,
+
+  // Reglas de permisos: la ultima regla que coincide gana.
+  "permissions": [
+    { "action": "shell", "resource": "git push", "effect": "ask" },
+    { "action": "shell", "resource": "git push *", "effect": "ask" },
+    { "action": "shell", "resource": "*rm -rf*", "effect": "ask" },
+    { "action": "shell", "resource": "*Remove-Item*Recurse*", "effect": "ask" },
+    { "action": "shell", "resource": "docker system prune*", "effect": "ask" },
+    { "action": "shell", "resource": "docker volume rm*", "effect": "ask" },
+    { "action": "edit", "resource": "**/.env*", "effect": "ask" },
+    { "action": "edit", "resource": "**/*.pem", "effect": "ask" },
+    { "action": "edit", "resource": "**/*.key", "effect": "ask" }
+  ],
+
+  // Compaccion: compactar antes del limite y conservar detalle reciente.
+  "compaction": {
+    "auto": true,
+    "background": true,
+    "keep": { "tokens": 20000 },
+    "buffer": "20%"
+  },
+
+  "mcp": {
+    "servers": {
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp"
+      }
+    }
+  }
+}
