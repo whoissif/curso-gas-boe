@@ -45,23 +45,21 @@ Workspace operativo con continuidad basada en OpenCode puro **y** curso online i
 - [x] Configuración de despliegue preparada: `packageManager=pnpm@12.16.1`, `engines.node=22.x`, `.nvmrc`, `vercel.json` (framework Vite, `pnpm build`, salida `dist`, install frozen), `docs/DESPLIEGUE.md` y enlace en `README.md`.
 - [x] Validación de despliegue en verde tras actualizar el lockfile: `pnpm install --frozen-lockfile`; `pnpm test` 8/8; `pnpm build` correcto; `pnpm lint` sin errores; `vercel.json` JSON válido.
 - [x] Autenticación de GitHub CLI completada tras rellenar el código de dispositivo en el navegador integrado y confirmar la autorización.
-- [x] Commit Conventional Commits `feat(curso-gas): configurar despliegue en Vercel` y push de `main` al repo público acordado (77 archivos, rama con seguimiento `origin/main`).
+- [x] Commits Conventional Commits `feat(curso-gas): configurar despliegue en Vercel` (77 archivos) y `docs: registrar publicación en GitHub y paso a Vercel`; ambos en `origin/main` y con el remoto sincronizado.
+- [x] Despliegue en Vercel completado en producción. Root Directory `projects/curso-gas-boe`, preset detectado desde `vercel.json` (Vite, `pnpm install --frozen-lockfile`, `pnpm build`, Output `dist`).
+- [x] URL pública verificada: `https://curso-gas-29efeja5x-whoissif27.vercel.app`. Carga sin errores de consola; navegación por las seis secciones; buscador con 7 resultados para «inspección»; examen iniciado con 4 opciones y reloj a 00:00.
 - [x] Estado local verificado con `git status --short`: 13 entradas sin seguimiento (`.gitignore`, `.opencode/`, `AGENTS.md`, PDF, `ESTADO.md`, `README.md`, `docs/`, `opencode.jsonc`, `projects/curso-gas-boe/`, `projects/ejemplo-node/`, `projects/ejemplo-python/`, `projects/web-app/`, `scripts/`).
 - [x] Servidor de desarrollo detenido: proceso PID 13580 y sus hijos terminados con `taskkill /T /F`; puerto 5173 verificado como libre.
 
 ## Pendiente
 
 - [ ] **Compactación manual pendiente**: requiere CLI `opencode` en el PATH. No se ejecutó el endpoint `--data '{"id":"cp-<timestamp>"}'`.
-- [ ] Importar el repo en Vercel con Root Directory `projects/curso-gas-boe` y verificar la URL pública.
 - [ ] Validar `/checkpoint` una vez que la CLI `opencode` esté disponible.
 - [ ] Opcional: configurar `agents.compaction.model` con un ID de modelo real.
 
 ## Próxima acción
 
-1. Importar el repositorio en `https://vercel.com/new`: Root Directory `projects/curso-gas-boe`, Framework Vite, Node 22.x, `pnpm install --frozen-lockfile`, `pnpm build`, Output `dist`; pulsar Deploy.
-2. Verificar la URL pública (carga del curso, buscador, un test y el examen sin errores de consola).
-3. Actualizar `ESTADO.md` con la URL y el resultado del despliegue.
-4. La compactación manual sigue pendiente: hacer disponible la CLI `opencode` en el PATH y, usando solo `OPENCODE_SESSION_ID`, ejecutar `opencode api post /api/session/$env:OPENCODE_SESSION_ID/compact --data '{"id":"cp-<timestamp>"}'`. No adivinar el ID ni reintentar sin la CLI.
+Lote cerrado. La única acción pendiente es la compactación manual: hacer disponible la CLI `opencode` en el PATH y, usando solo `OPENCODE_SESSION_ID`, ejecutar `opencode api post /api/session/$env:OPENCODE_SESSION_ID/compact --data '{"id":"cp-<timestamp>"}'`. No adivinar el ID ni reintentar sin la CLI.
 
 ## Comandos de prueba
 
@@ -93,8 +91,8 @@ cd projects/curso-gas-boe; pnpm test; pnpm build; pnpm lint
 ## Bloqueos
 
 - **Compactación manual pendiente**: `opencode` no está en el PATH del shell. El ID de sesión sí se obtuvo de `OPENCODE_SESSION_ID`, pero no se llamó al endpoint ni se adivinó el ID. No se reintentó.
-- Resuelto: autenticación de GitHub CLI. Los dos primeros intentos `--web` expiraron y sus procesos se detuvieron; el tercero se completó rellenando el código en el navegador integrado y confirmando la autorización. Ya hay remote, repo y push.
-- `git diff --stat` sale vacío porque todo el workspace está sin commitear; `git status --short` confirma las 13 entradas sin seguimiento indicadas arriba.
+- Resuelto: autenticación de GitHub CLI. Los dos primeros intentos `--web` expiraron y sus procesos se detuvieron; el tercero se completó rellenando el código en el navegador integrado y confirmando la autorización. Ya hay remote, repo y push. El push del segundo commit quedó colgado; se detuvo el proceso, se ejecutó `gh auth setup-git` y el push terminó correctamente.
+- Resuelto: todo el workspace quedó commiteado y pusheado; `git status --short` sale vacío y local/remoto están en el mismo commit.
 - Resuelto: servidor de desarrollo en `http://127.0.0.1:5173` (PID 13580) detenido tras la revisión visual; puerto 5173 libre.
 - Resuelto: `npm.ps1` bloqueado por ExecutionPolicy → se usa `pnpm`.
 - Resuelto: límite de pasos anterior → se reanudó y cerró el lote.
